@@ -74,7 +74,7 @@ subgraph clusterE {
     le21 [ label = "T" ];
     le22 [ label = "*" ];
     le31 [ label = "." ];
-    le41 [ label = "'+'" ];
+    le41 [ label = "'=_+_='" ];
     le42 [ label = "T" ];
 
     le1  -> { le21 le22 };
