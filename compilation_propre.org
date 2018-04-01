@@ -19,14 +19,14 @@
                    |           |                                           |          |
                    +-----+-----+                                           +----+-----+
                          |                                                      |
-                         v                                                      v 
+                         v                                                      v
                   +---------------+----------------+             +--------------------+------------------+
                   |               |                |             |                    |                  |
                   |               | Arbre          |             |                    |                  |
                   |               | dépendance (A) |             |                    |                  |
-                  | Scan G0       |                |             | Scan GPL           | A[G] ... A[N]    |        +----------------+     
-                  | Analyseurs    |                |             | Analyseurs         |                  |        |                |     
-                  |               +----------------+             |                    +------------------+        |  Gen P-code    |    
+                  | Scan G0       |                |             | Scan GPL           | A[G] ... A[N]    |        +----------------+
+                  | Analyseurs    |                |             | Analyseurs         |                  |        |                |
+                  |               +----------------+             |                    +------------------+        |  Gen P-code    |
                   |                                |             |                                       |        |                |
                   |                                |             |                                       |        |      +         |
                   |               +----------------+             |                                       +------->|                |
@@ -45,10 +45,10 @@
   +-----+-------------+   +-----------+---------+     +--------------+                            |
   |                   |   |                     |                    |                            |
   | Grammaire Java    |   | Grammaire cpp       |            +-------+----------+        +--------+---------+
-  |                   |   |                     |            |                  |        |                  |   
-  +-------------------+   +---------------------+            | Programme        |        | Programme        |   
-                                                             | Java             |        | cpp              |   
-                                                             |                  |        |                  |   
+  |                   |   |                     |            |                  |        |                  |
+  +-------------------+   +---------------------+            | Programme        |        | Programme        |
+                                                             | Java             |        | cpp              |
+                                                             |                  |        |                  |
                                                              +------------------+        +------------------+
 #+END_SRC
 
@@ -65,10 +65,129 @@
      re [label="Reguliere"]
      cf [label="Context Free"]
      sy [label="Generation|<op>Optimisation|Interpretation"]
-     
+
      ansy:an -> an -> gr -> re,cf
      ansy:sy -> sy
   }
+#+END_SRC
+
+#+BEGIN_SRC dot :file Atree.png :cmdline -Kdot -Tpng -Gdpi=300
+
+digraph G {
+A [shape=Mdiamond];
+subgraph clusterA {
+S [shape=square];
+N [shape=square];
+E [shape=square];
+T [shape=square];
+F [shape=square];
+
+}
+
+subgraph clusterS {
+    edge [dir=none]
+    node [shape=none, style=none];
+    ls1  [ label = "." ];
+    ls21 [ label = "*" ];
+    ls22 [ label = ";" ];
+    ls31 [ label = "." ];
+    ls41 [ label = "." ];
+    ls42 [ label = "," ];
+    ls51 [ label = "." ];
+    ls52 [ label = "E" ];
+    ls61 [ label = "N" ];
+    ls62 [ label = "'->'" ];
+
+    ls1  -> { ls21 ls22 };
+    ls21 -> { ls31 };
+    ls31 -> { ls41 ls42 };
+    ls41 -> { ls51 ls52 };
+    ls51 -> { ls61 ls62};
+}
+
+subgraph clusterN {
+    node [shape=none, style=none];
+    ln [ label="IDNTER"];
+}
+
+subgraph clusterE {
+    edge [dir=none]
+    node [shape=none, style=none];
+    le1  [ label = "." ];
+    le21 [ label = "T" ];
+    le22 [ label = "*" ];
+    le31 [ label = "." ];
+    le41 [ label = "'+'" ];
+    le42 [ label = "T" ];
+
+    le1  -> { le21 le22 };
+    le22 -> { le31 };
+    le31 -> { le41 le42 };
+}
+
+subgraph clusterT {
+    edge [dir=none]
+    node [shape=none, style=none];
+    lt1  [ label = "." ];
+    lt21 [ label = "F" ];
+    lt22 [ label = "*" ];
+    lt31 [ label = "." ];
+    lt41 [ label = "'.'" ];
+    lt42 [ label = "F" ];
+
+    lt1  -> { lt21 lt22 };
+    lt22 -> { lt31 };
+    lt31 -> { lt41 lt42 };
+}
+
+subgraph clusterf {
+    edge [dir=none]
+    node [shape=none, style=none];
+    lf1  [ label = "+" ];
+    lf21  [ label = "+" ];
+    lf22  [ label = "." ];
+    lf31  [ label = "+" ];
+    lf32  [ label = "." ];
+    lf33  [ label = "E" ];
+    lf34  [ label = "'/)'" ];
+    lf41  [ label = "+" ];
+    lf42  [ label = "." ];
+    lf44  [ label = "E" ];
+    lf43  [ label = "']'" ];
+    lf45  [ label = "." ];
+    lf51  [ label = "'IDNTER'" ];
+    lf52  [ label = "'ELTER'" ];
+    lf53  [ label = "E" ];
+    lf54  [ label = "')'" ];
+    lf55  [ label = "." ];
+    lf56  [ label = "'(/'" ];
+    lf61  [ label = "." ];
+    lf62  [ label = "'['" ];
+    lf71  [ label = "'('" ];
+
+    lf1 -> { lf21 lf22 };
+    lf21 -> {lf31 lf32};
+    lf22 -> {lf33 lf34};
+    lf31 -> {lf41 lf42};
+    lf32 -> {lf43 lf44};
+    lf33 -> lf45 -> lf56;
+    lf41 -> {lf51 lf52};
+    lf42 -> {lf53 lf54};
+    lf44 -> lf55 -> lf62;
+    lf53 -> lf61;
+    lf61 -> lf71;
+
+}
+
+	S -> ls1;
+  N -> ln;
+  E -> le1;
+  T -> lt1;
+  F -> lf1;
+
+
+}
+
 #+END_SRC
 
 #+RESULTS:
