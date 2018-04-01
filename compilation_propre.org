@@ -8,56 +8,9 @@
  - Scanner :: analyse lexicale
  - Analyseur :: autres analyses (syntaxique et semantique)
 ** Schémas
-#+BEGIN_SRC ditaa :file projetcompilo.png :cmdline -Eo
-
-
-
-
-                   +-----------+                                           +----------+
-                   |           |                                           |          |
-                   | G0        |                                           | GPL      |
-                   |           |                                           |          |
-                   +-----+-----+                                           +----+-----+
-                         |                                                      |
-                         v                                                      v
-                  +---------------+----------------+             +--------------------+------------------+
-                  |               |                |             |                    |                  |
-                  |               | Arbre          |             |                    |                  |
-                  |               | dépendance (A) |             |                    |                  |
-                  | Scan G0       |                |             | Scan GPL           | A[G] ... A[N]    |        +----------------+
-                  | Analyseurs    |                |             | Analyseurs         |                  |        |                |
-                  |               +----------------+             |                    +------------------+        |  Gen P-code    |
-                  |                                |             |                                       |        |                |
-                  |                                |             |                                       |        |      +         |
-                  |               +----------------+             |                                       +------->|                |
-                  |               |                |             |                                       |        |  Interpreteur  |
-                  |               | Actions G0     +------------>|                                       |        |                |
-       +--------->|               |                |             |                    +------------------+        +----------------+
-       |          |               |                |             |                    |                  |
-       |          +---------------+----------------+             |                    | Actions GPL      |
-  +----+-----+                                        +--------->|                    |                  |
-  |          |                                        |          |                    |                  |
-  | GPL      |<---------+                             |     +--->|                    |                  |
-  |          |          |                             |     |    +--------------------+------------------+
-  +----------+          |                             |     |
-        +---------------+-------------+               |     +-------------------------------------+
-        |                             |               |                                           |
-  +-----+-------------+   +-----------+---------+     +--------------+                            |
-  |                   |   |                     |                    |                            |
-  | Grammaire Java    |   | Grammaire cpp       |            +-------+----------+        +--------+---------+
-  |                   |   |                     |            |                  |        |                  |
-  +-------------------+   +---------------------+            | Programme        |        | Programme        |
-                                                             | Java             |        | cpp              |
-                                                             |                  |        |                  |
-                                                             +------------------+        +------------------+
-#+END_SRC
-
-#+RESULTS:
-[[file:projetcompilo.png]]
-
 #+CAPTION: Projet Compilo
 #+NAME:   fig:Projet Compilo
-[[projetcompilo2.png]]
+[[file:projetcompilo2.png]]
 
 
 #+BEGIN_SRC dot :file archicompilo.png :cmdline -Kdot -Tpng -Gdpi=300
@@ -77,7 +30,6 @@
 #+END_SRC
 
 #+BEGIN_SRC dot :file Atree.png :cmdline -Kdot -Tpng -Gdpi=300
-
 digraph G {
 A [shape=Mdiamond];
 subgraph clusterA {
@@ -192,7 +144,6 @@ subgraph clusterf {
 
 
 }
-
 #+END_SRC
 
 #+RESULTS:
