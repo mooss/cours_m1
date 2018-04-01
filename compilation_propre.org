@@ -57,7 +57,7 @@
 
 #+CAPTION: Projet Compilo
 #+NAME:   fig:Projet Compilo
-[[compilo2.jpg]]
+[[./projetcompilo2.jpg]]
 
 
 #+BEGIN_SRC dot :file archicompilo.png :cmdline -Kdot -Tpng -Gdpi=300
