@@ -1,0 +1,4 @@
+* Cours de master 1 ALMATAL
+Ce repo est dédié à contenir un ou des cours de première année de master ALMA/ATAL.
+
+Ne contient pour l'instant qu'un morceau du cours de compilation.
