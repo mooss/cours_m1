@@ -189,7 +189,7 @@ Syntaxe maison...
 #+BEGIN_EXAMPLE
 Type Atomtype = (Terminal, Non-Terminal);
      Operation = (Conc, Union, Star, UN, Atom);
-PTR = \uparrow Node
+PTR = \uparrow{} Node
 
 Node = Enregistrement
        case operation of
@@ -210,9 +210,9 @@ Fonction GenConc(P1, P2 : PTR) : PTR;
   var P : PTR;
 debut
   New(P, conc);
-  P\uparrow.left := P1;
-  P\uparrow.right := P2;
-  P\uparrow.class := conc;
+  P \uparrow{}.left := P1;
+  P \uparrow{}.right := P2;
+  P \uparrow{}.class := conc;
   GenConc := P;
 fin
 
@@ -220,9 +220,9 @@ Fonction GenUnion(P1, P2 : PTR) : PTR;
   var P : PTR;
   début
     New(P, union);
-    P\uparrow.left := P1;
-    P\uparrow.right := P2;
-    P\uparrow.class := union;
+    P \uparrow{}.left := P1;
+    P \uparrow{}.right := P2;
+    P \uparrow{}.class := union;
     GenUnion := P;
   fin
 
@@ -230,8 +230,8 @@ Fonction GenStar(P1 : PTR) : PTR; //0 ou n fois
   var P:PTR;
   débutStar
     New(P, star);
-    P\uparrow.stare := P1;
-    P\uparrow.class := star;
+    P \uparrow{}.stare := P1;
+    P \uparrow{}.class := star;
     GenStar := P;
   fin
 
@@ -239,8 +239,8 @@ Fonction GenUn(P1 : PTR) : PTR; //0 ou une fois
   var P:PTR;
   début
     New(P, un);
-    P\uparrow.une := P1;
-    P\uparrow.class := un;
+    P \uparrow{}.une := P1;
+    P \uparrow{}.class := un;
     GenUn := P;
   fin
 
@@ -248,9 +248,9 @@ Fonction GenAtom(COD, Act : int, AType : Atomtype) : PTR
   var P:PTR;
   début
     New(P, atom);
-    P\uparrow.COD := COD;
-    P\uparrow.Act := Act;
-    P\uparrow.AType := AType;
+    P \uparrow{}.COD := COD;
+    P \uparrow{}.Act := Act;
+    P \uparrow{}.AType := AType;
     GenAtom := P;
   fin
 
@@ -259,10 +259,10 @@ A[S] :=
     GenStar(
       GenConc(
         GenConc(
-          GenConc(GenAtom('N', ∅, NonTerminal),
+          GenConc(GenAtom('N', \varnothing{}, NonTerminal),
           GenAtom('->', 5, Terminal)
         ),
-        GenAtom('E', ∅, NonTerminal)
+        GenAtom('E', \varnothing{}, NonTerminal)
       ),
       GenAtom(',', , Terminal)
     ),
@@ -274,21 +274,21 @@ A[S] :=
 A[N] := GenAtom('IDNTER', , Terminal);
 
 A[E] := GenConc(
-          GenAtom('T', ∅, NonTerminal),
+          GenAtom('T', \varnothing{}, NonTerminal),
           GenStar(
             GenConc(
               GenAtom('+', ?, Terminal),
-              GenAtom('T', ∅, Terminal)
+              GenAtom('T', \varnothing{}, Terminal)
               )
             )
         )
 
 A[T] := GenConc(
-          GenAtom('F', ∅, NonTerminal),
+          GenAtom('F', \varnothing{}, NonTerminal),
           GenStar(
             GenConc(
               GenAtom('.', ?, Terminal),
-              GenAtom('T', ∅, Terminal)
+              GenAtom('T', \varnothing{}, Terminal)
               )
             )
         )
@@ -303,7 +303,7 @@ A[F] := GenUnion(
               GenConc(
                 GenConc(
                   GenAtom('(', ?, Terminal),
-                  GenAtom('E', ∅, NonTerminal)
+                  GenAtom('E', \varnothing{}, NonTerminal)
                   ),
                 GenAtom(')', ?, Terminal)
                 )
@@ -311,7 +311,7 @@ A[F] := GenUnion(
             GenConc(
               GenConc(
                 GenAtom('[', ?, Terminal),
-                GenAtom('E', ∅, NonTerminal)
+                GenAtom('E', \varnothing{}, NonTerminal)
                 ),
               GenAtom(']', ?, Terminal)
               )
@@ -319,7 +319,7 @@ A[F] := GenUnion(
           GenConc(
             GenConc(
               GenAtom('(', ?, Terminal),
-              GenAtom('E', ∅, NonTerminal)
+              GenAtom('E', \varnothing{}, NonTerminal)
               ),
             GenAtom(')', ?, Terminal)
             )
