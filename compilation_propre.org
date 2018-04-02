@@ -100,14 +100,14 @@ subgraph clusterT {
 subgraph clusterf {
     edge [dir=none]
     node [shape=none, style=none];
-    lf1  [ label = "+" ];
-    lf21  [ label = "+" ];
+    lf1  [ label = "=_+_=" ];
+    lf21  [ label = "=_+_=" ];
     lf22  [ label = "." ];
-    lf31  [ label = "+" ];
+    lf31  [ label = "=_+_=" ];
     lf32  [ label = "." ];
     lf33  [ label = "E" ];
     lf34  [ label = "'/)'" ];
-    lf41  [ label = "+" ];
+    lf41  [ label = "=_+_=" ];
     lf42  [ label = "." ];
     lf44  [ label = "E" ];
     lf43  [ label = "']'" ];
@@ -165,7 +165,7 @@ $$S \to [N.'\to' . E . ','].';',$$
 $$N \to 'INDTER',$$
 
 *** Regle 3
-$$ E \to R.['+'.T],$$
+$$ E \to R.['=_+_='.T],$$
 
 *** Regle 4
 $$ T \to F.['.'.F],$$
