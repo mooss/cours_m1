@@ -105,34 +105,34 @@ subgraph clusterf {
     lf22  [ label = "." ];
     lf31  [ label = "=_+_=" ];
     lf32  [ label = "." ];
-    lf33  [ label = "E" ];
+    lf33  [ label = "." ];
     lf34  [ label = "'/)'" ];
     lf41  [ label = "=_+_=" ];
     lf42  [ label = "." ];
-    lf44  [ label = "E" ];
+    lf44  [ label = "." ];
     lf43  [ label = "']'" ];
-    lf45  [ label = "." ];
+    lf45  [ label = "'(/'" ];
     lf51  [ label = "'IDNTER'" ];
     lf52  [ label = "'ELTER'" ];
-    lf53  [ label = "E" ];
+    lf53  [ label = "." ];
     lf54  [ label = "')'" ];
-    lf55  [ label = "." ];
-    lf56  [ label = "'(/'" ];
-    lf61  [ label = "." ];
-    lf62  [ label = "'['" ];
-    lf71  [ label = "'('" ];
+    lf55  [ label = "'['" ];
+    lf56  [ label = "E" ];
+    lf61  [ label = "'('" ];
+    lf62  [ label = "E" ];
+    lf63  [ label = "E" ];
 
     lf1 -> { lf21 lf22 };
     lf21 -> {lf31 lf32};
     lf22 -> {lf33 lf34};
     lf31 -> {lf41 lf42};
     lf32 -> {lf43 lf44};
-    lf33 -> lf45 -> lf56;
+    lf33 -> {lf45 lf56};
     lf41 -> {lf51 lf52};
     lf42 -> {lf53 lf54};
-    lf44 -> lf55 -> lf62;
-    lf53 -> lf61;
-    lf61 -> lf71;
+    lf44 -> {lf62 lf55};
+    lf53 -> {lf61 lf63};
+
 
 }
 
@@ -141,7 +141,6 @@ subgraph clusterf {
   E -> le1;
   T -> lt1;
   F -> lf1;
-
 
 }
 #+END_SRC
@@ -196,36 +195,124 @@ A: Array [1..5] of PTR:
 ** Construction des 5 Arbres
 
 #+BEGIN_EXAMPLE
-Fonction GenConc(P1, P2: PTR) : PTR;
-  var P:PTR
+Fonction GenConc(P1, P2 : PTR) : PTR;
+  var P : PTR;
 debut
-  New(P, Conc);
+  New(P, conc);
   P\uparrow.left := P1;
   P\uparrow.right := P2;
-  P\uparrow.class := Conc;
-  Conc := P;
+  P\uparrow.class := conc;
+  GenConc := P;
 fin
 
-GenUnion,
-GenStar, //0 ou n fois
-GenUn,//0 ou une fois
-GenAtom
+Fonction GenUnion(P1, P2 : PTR) : PTR;
+  var P : PTR;
+  début
+    New(P, union);
+    P\uparrow.left := P1;
+    P\uparrow.right := P2;
+    P\uparrow.class := union;
+    GenUnion := P;
+  fin
+
+Fonction GenStar(P1 : PTR) : PTR; //0 ou n fois
+  var P:PTR;
+  débutStar
+    New(P, star);
+    P\uparrow.stare := P1;
+    P\uparrow.class := star;
+    GenStar := P;
+  fin
+
+Fonction GenUn(P1 : PTR) : PTR; //0 ou une fois
+  var P:PTR;
+  début
+    New(P, un);
+    P\uparrow.une := P1;
+    P\uparrow.class := un;
+    GenUn := P;
+  fin
+
+Fonction GenAtom(COD, Act : int, AType : Atomtype) : PTR
+  var P:PTR;
+  début
+    New(P, atom);
+    P\uparrow.COD := COD;
+    P\uparrow.Act := Act;
+    P\uparrow.AType := AType;
+    GenAtom := P;
+  fin
 
 A[S] :=
   GenConc(
     GenStar(
       GenConc(
         GenConc(
-          GenConc(GenAtom('N', ∅, NonTerminal)),
-          GenAtom('->', , Terminal)
+          GenConc(GenAtom('N', ∅, NonTerminal),
+          GenAtom('->', 5, Terminal)
         ),
-        GenAtom('E', ∅, )
+        GenAtom('E', ∅, NonTerminal)
       ),
       GenAtom(',', , Terminal)
     ),
     GenAtom(';', , Terminal)
   );
 
+//Ajouts de ma part, je ne suis pas sûr des résultats :
+
+A[N] := GenAtom('IDNTER', , Terminal);
+
+A[E] := GenConc(
+          GenAtom('T', ∅, NonTerminal),
+          GenStar(
+            GenConc(
+              GenAtom('+', ?, Terminal),
+              GenAtom('T', ∅, Terminal)
+              )
+            )
+        )
+
+A[T] := GenConc(
+          GenAtom('F', ∅, NonTerminal),
+          GenStar(
+            GenConc(
+              GenAtom('.', ?, Terminal),
+              GenAtom('T', ∅, Terminal)
+              )
+            )
+        )
+
+A[F] := GenUnion(
+          GenUnion(
+            GenUnion(
+              GenUnion(
+                GenAtom('IDNTER', , Terminal),
+                GenAtom('ELTER', , Terminal)
+                ),
+              GenConc(
+                GenConc(
+                  GenAtom('(', ?, Terminal),
+                  GenAtom('E', ∅, NonTerminal)
+                  ),
+                GenAtom(')', ?, Terminal)
+                )
+              ),
+            GenConc(
+              GenConc(
+                GenAtom('[', ?, Terminal),
+                GenAtom('E', ∅, NonTerminal)
+                ),
+              GenAtom(']', ?, Terminal)
+              )
+            ),
+          GenConc(
+            GenConc(
+              GenAtom('(', ?, Terminal),
+              GenAtom('E', ∅, NonTerminal)
+              ),
+            GenAtom(')', ?, Terminal)
+            )
+        )
 #+END_EXAMPLE
 
 
@@ -233,9 +320,9 @@ A[S] :=
 
 * Grammaires LL(k)
 
-$k$ est une mesure de l'ambiguite.
-Represente le nombre de caracteres qu'il est necessaire de regarder pour determiner quelle regle utiliser.
-Bien entendu, les regles LL(1) sont preferables.
+$k$ est une mesure de l'ambiguité.
+Représente le nombre de caractères qu'il est nécessaire de regarder pour déterminer quelle règle utiliser.
+Bien entendu, les règles LL(1) sont préférables.
 
 ** Premier(N)
  - Si $N \rightarrow A\dots$ alors $Premier(N)=Premier(A)$
