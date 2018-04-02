@@ -42,14 +42,17 @@ F [shape=square];
 }
 
 subgraph clusterS {
+
     edge [dir=none]
     node [shape=none, style=none];
     ls1  [ label = "." ];
+
     ls21 [ label = "*" ];
     ls22 [ label = ";" ];
     ls31 [ label = "." ];
     ls41 [ label = "." ];
-    ls42 [ label = "," ];
+    ls42 [ label =< ,<BR />
+        <FONT color="red" POINT-SIZE="18">#1</FONT>> ];
     ls51 [ label = "." ];
     ls52 [ label = "E" ];
     ls61 [ label = "N" ];
@@ -64,7 +67,8 @@ subgraph clusterS {
 
 subgraph clusterN {
     node [shape=none, style=none];
-    ln [ label="IDNTER"];
+    ln [ label=< 'IDNTER'<BR />
+        <FONT color="red" POINT-SIZE="18">#2</FONT>>];
 }
 
 subgraph clusterE {
@@ -74,8 +78,9 @@ subgraph clusterE {
     le21 [ label = "T" ];
     le22 [ label = "*" ];
     le31 [ label = "." ];
-    le41 [ label = "'=_+_='" ];
-    le42 [ label = "T" ];
+    le41 [ label = "'_+_'" ];
+    le42 [ label = < T <BR />
+        <FONT color="red" POINT-SIZE="18">#3</FONT>>];
 
     le1  -> { le21 le22 };
     le22 -> { le31 };
@@ -90,7 +95,8 @@ subgraph clusterT {
     lt22 [ label = "*" ];
     lt31 [ label = "." ];
     lt41 [ label = "'.'" ];
-    lt42 [ label = "F" ];
+    lt42 [ label = < F <BR />
+        <FONT color="red" POINT-SIZE="18">#4</FONT>>];
 
     lt1  -> { lt21 lt22 };
     lt22 -> { lt31 };
@@ -100,20 +106,24 @@ subgraph clusterT {
 subgraph clusterf {
     edge [dir=none]
     node [shape=none, style=none];
-    lf1  [ label = "=_+_=" ];
-    lf21  [ label = "=_+_=" ];
+    lf1  [ label = "_+_" ];
+    lf21  [ label = "_+_" ];
     lf22  [ label = "." ];
-    lf31  [ label = "=_+_=" ];
+    lf31  [ label = "_+_" ];
     lf32  [ label = "." ];
     lf33  [ label = "." ];
-    lf34  [ label = "'/)'" ];
-    lf41  [ label = "=_+_=" ];
+    lf34  [ label = < '/)' <BR />
+        <FONT color="red" POINT-SIZE="18">#7</FONT>>];
+    lf41  [ label = "_+_" ];
     lf42  [ label = "." ];
     lf44  [ label = "." ];
-    lf43  [ label = "']'" ];
+    lf43  [ label = < ']' <BR />
+        <FONT color="red" POINT-SIZE="18">#6</FONT>>];
     lf45  [ label = "'(/'" ];
-    lf51  [ label = "'IDNTER'" ];
-    lf52  [ label = "'ELTER'" ];
+    lf51  [ label = < 'IDNTER' <BR />
+        <FONT color="red" POINT-SIZE="18">#5</FONT>>];
+    lf52  [ label = < 'ELTER' <BR />
+        <FONT color="red" POINT-SIZE="18">#5</FONT>>];
     lf53  [ label = "." ];
     lf54  [ label = "')'" ];
     lf55  [ label = "'['" ];
@@ -143,6 +153,7 @@ subgraph clusterf {
   F -> lf1;
 
 }
+
 #+END_SRC
 
 #+RESULTS:
@@ -164,7 +175,7 @@ $$S \to [N.'\to' . E . ','].';',$$
 $$N \to 'INDTER',$$
 
 *** Regle 3
-$$ E \to R.['=_+_='.T],$$
+$$ E \to R.['+'.T],$$
 
 *** Regle 4
 $$ T \to F.['.'.F],$$
