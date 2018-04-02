@@ -203,8 +203,10 @@ Node = Enregistrement
 A: Array [1..5] of PTR:
 #+END_EXAMPLE
 
+\newpage
 ** Construction des 5 Arbres
 
+*** Fonctions Gen*
 #+BEGIN_EXAMPLE
 Fonction GenConc(P1, P2 : PTR) : PTR;
   var P : PTR;
@@ -253,7 +255,12 @@ Fonction GenAtom(COD, Act : int, AType : Atomtype) : PTR
     P \uparrow{}.AType := AType;
     GenAtom := P;
   fin
+#+END_EXAMPLE
+\newpage
+*** Arbres
+**** S
 
+#+BEGIN_EXAMPLE
 A[S] :=
   GenConc(
     GenStar(
@@ -268,11 +275,17 @@ A[S] :=
     ),
     GenAtom(';', , Terminal)
   );
+#+END_EXAMPLE
+**** N
 
+#+BEGIN_EXAMPLE
 //Ajouts de ma part, je ne suis pas sûr des résultats :
 
 A[N] := GenAtom('IDNTER', , Terminal);
+#+END_EXAMPLE
+**** E
 
+#+BEGIN_EXAMPLE
 A[E] := GenConc(
           GenAtom('T', \varnothing{}, NonTerminal),
           GenStar(
@@ -282,7 +295,10 @@ A[E] := GenConc(
               )
             )
         )
+#+END_EXAMPLE
+**** T
 
+#+BEGIN_EXAMPLE
 A[T] := GenConc(
           GenAtom('F', \varnothing{}, NonTerminal),
           GenStar(
@@ -292,7 +308,12 @@ A[T] := GenConc(
               )
             )
         )
+#+END_EXAMPLE
+\newpage
 
+**** F
+
+#+BEGIN_EXAMPLE
 A[F] := GenUnion(
           GenUnion(
             GenUnion(
@@ -325,9 +346,6 @@ A[F] := GenUnion(
             )
         )
 #+END_EXAMPLE
-
-
-
 
 * Grammaires LL(k)
 
