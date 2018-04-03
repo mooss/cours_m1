@@ -29,6 +29,9 @@
   }
 #+END_SRC
 
+#+RESULTS:
+[[file:archicompilo.png]]
+
 #+BEGIN_SRC dot :file Atree.png :cmdline -Kdot -Tpng -Gdpi=300
 digraph G {
 A [shape=Mdiamond];
@@ -157,7 +160,7 @@ subgraph clusterf {
 #+END_SRC
 
 #+RESULTS:
-[[file:archicompilo.png]]
+[[file:Atree.png]]
 
 ** Construction  de la grammaire G0 (il doit manquer pas mal de trucs)
 
@@ -276,6 +279,7 @@ A[S] :=
     GenAtom(';', , Terminal)
   );
 #+END_EXAMPLE
+
 **** N
 
 #+BEGIN_EXAMPLE
@@ -283,6 +287,7 @@ A[S] :=
 
 A[N] := GenAtom('IDNTER', , Terminal);
 #+END_EXAMPLE
+
 **** E
 
 #+BEGIN_EXAMPLE
@@ -296,6 +301,7 @@ A[E] := GenConc(
             )
         )
 #+END_EXAMPLE
+
 **** T
 
 #+BEGIN_EXAMPLE
