@@ -210,7 +210,7 @@ Scanne les
 - élements terminaux
 - élements terminaux
 
-*** Scan
+*** Scan GPL
 
 Scanne les
 - identificateurs
@@ -235,7 +235,7 @@ $$S \to [N.'\to' . E . ','].';',$$
  - pour differencier les terminaux et les non terminaux, on met les terminaux entre guillemets
 
 *** Règle 2
-$$N \to 'INDTER',$$
+$$N \to 'IDNTER',$$
 
 *** Règle 3
 $$ E \to R.['+'.T],$$
@@ -246,7 +246,7 @@ $$ T \to F.['.'.F],$$
 *** Règle 5
 $$F \to 'INDTER' + 'ELTER' + '('.E.')' + '['.E.']' + '(/'.E.'/),;$$
 
-** Structure de donnees
+** Structure de données
 Syntaxe maison...
 
 #+BEGIN_EXAMPLE
@@ -413,6 +413,9 @@ A[F] := GenUnion(
         )
 #+END_EXAMPLE
 
+** Scan G@@html:<sub>@@0@@html:</sub>@@
+Fonction analyse...
+
 ** Action G@@html:<sub>@@0@@html:</sub>@@
 
 De quoi a-t-on besoin ?
@@ -484,7 +487,8 @@ Si une règle ne possede qu'une derivation, la règle 1 ne s'applique pas.
 Si une règle ne possede pas de suiv, la règle 2 ne s'applique pas.
 
 
-* Opérateurs $\eqdot$, $\gtrdot$, et $\lessdot$
+* Génération automatique de la table SR
+** Opérateurs $\eqdot$, $\gtrdot$, et $\lessdot$
 
  - $X \eqdot Y$ si
 \begin{equation*}
