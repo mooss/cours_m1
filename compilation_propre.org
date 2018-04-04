@@ -206,7 +206,9 @@ subgraph clusterf {
 *** Scan G@@html:<sub>@@0@@html:</sub>@@
 
 
-Scanne les * élements terminaux * élements terminaux
+Scanne les
+- élements terminaux
+- élements terminaux
 
 *** Scan
 
