@@ -165,10 +165,6 @@ subgraph clusterf {
 #+BEGIN_SRC ditaa :file gplactionpcode.png :cmdline -Eo
 
 
-
-
-
-
          +------------------------+---------------------+
          |                        |                     |
          |  Scan-GPL              | Arbre               |
@@ -204,28 +200,46 @@ subgraph clusterf {
 #+RESULTS:
 [[file:gplactionpcode.png]]
 
-** Construction  de la grammaire G0 (il doit manquer pas mal de trucs)
+** Processus divers
+
+
+*** Scan G@@html:<sub>@@0@@html:</sub>@@
+
+
+Scanne les * élements terminaux * élements terminaux
+
+*** Scan
+
+Scanne les * identificateurs * nombres entiers * symboles (>, #, [,
+etc.)
+
+*** Action G@@html:<sub>@@0@@html:</sub>@@
+
+Construit l'arbre GPL
+
+
+** Construction de la grammaire G0
 
 *** Notation B.N.F.
  - $::= \iff \to$
  - $[X] \iff X.X.X...X \text{(n fois)}, n \geq 0$
  - $x \iff \cdot$
 
-*** Regle 1
+*** Règle 1
 $$S \to [N.'\to' . E . ','].';',$$
  - $\text{concatenation} \iff \cdot$
  - pour differencier les terminaux et les non terminaux, on met les terminaux entre guillemets
 
-*** Regle 2
+*** Règle 2
 $$N \to 'INDTER',$$
 
-*** Regle 3
+*** Règle 3
 $$ E \to R.['+'.T],$$
 
-*** Regle 4
+*** Règle 4
 $$ T \to F.['.'.F],$$
 
-*** Regle 5
+*** Règle 5
 $$F \to 'INDTER' + 'ELTER' + '('.E.')' + '['.E.']' + '(/'.E.'/),;$$
 
 ** Structure de donnees
@@ -408,7 +422,7 @@ Bien entendu, les règles LL(1) sont préférables.
 
 Avec "\Rightarrow" signifiant "se derivant en".
 
-Il ne s'agit pas d'appliquer une regle a chaque fois, mais plutot d'appliquer toutes les regles possibles.
+Il ne s'agit pas d'appliquer une règle a chaque fois, mais plutot d'appliquer toutes les règles possibles.
 
 ** Suivants
  - Si $A \rightarrow \dots Nc \dots$ alors $Suiv(N)=\{c\}$
@@ -420,8 +434,8 @@ Il ne s'agit pas d'appliquer une regle a chaque fois, mais plutot d'appliquer to
    $$Prem(\alpha_i) \cap Prem(\alpha_j) = \Phi,  \forall i \ne j$$
  - si $A \Rightarrow \epsilon$ on doit avoir $Prem(A) \cap Suiv(A) = \Phi$
 
-Si une regle ne possede qu'une derivation, la regle 1 ne s'applique pas.
-Si une regle ne possede pas de suiv, la regle 2 ne s'applique pas.
+Si une règle ne possede qu'une derivation, la règle 1 ne s'applique pas.
+Si une règle ne possede pas de suiv, la règle 2 ne s'applique pas.
 
 
 * Opérateurs $\eqdot$, $\gtrdot$, et $\lessdot$
