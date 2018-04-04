@@ -212,15 +212,17 @@ Scanne les
 
 *** Scan
 
-Scanne les * identificateurs * nombres entiers * symboles (>, #, [,
-etc.)
+Scanne les
+- identificateurs
+- nombres entiers
+- symboles (>, #, [, etc.)
 
 *** Action G@@html:<sub>@@0@@html:</sub>@@
 
 Construit l'arbre GPL
 
 
-** Construction de la grammaire G0
+** Construction de la grammaire G@@html:<sub>@@0@@html:</sub>@@
 
 *** Notation B.N.F.
  - $::= \iff \to$
@@ -291,7 +293,7 @@ Fonction GenUnion(P1, P2 : PTR) : PTR;
 
 Fonction GenStar(P1 : PTR) : PTR; //0 ou n fois
   var P:PTR;
-  débutStar
+  début
     New(P, star);
     P \uparrow{}.stare := P1;
     P \uparrow{}.class := star;
@@ -410,6 +412,48 @@ A[F] := GenUnion(
             )
         )
 #+END_EXAMPLE
+
+** Action G@@html:<sub>@@0@@html:</sub>@@
+
+De quoi a-t-on besoin ?
+- Deux dictionnaires : DicoT, DicoNT
+- Tableau pile[I] : Tableau de pointeurs
+
+Remarque : les nombres du case correspondent aux actions associées aux numéros inscrits dans les arbres.
+
+#+BEGIN_EXAMPLE
+Procédure Action G0(Act : int);
+  var T1, T2 : PTR;
+  début
+    case Act of
+    1: Dépiler(T1);
+       Dépiler(T2);
+       A[T2↑.cod + 5] := T1; ##Arbres GPL commencent à 6
+    2: Empiler(GenAtom(Recherche(DicoT), Action, CAType)) ##donne la partie gauche d'une règle
+      ##Recherche() stocke le token si non stocké dans dico
+    3: Dépiler(T1);
+       Dépiler(T2);
+       Empiler(GenUnion(T2,T1))
+    4: Dépiler(T1);
+       Dépiler(T2);
+       Empiler(GenConc(T2,T1))
+    5: if CAType = Terminal then
+        Empiler(GenAtom(Recherche(DicoT), Action, Terminal))
+       else
+        Empiler(GenAtom(Recherche(DicoNT), Action, Terminal))
+    6: Dépiler(T1);
+       Empiler(GenStar(T1));
+    7: Dépiler(T1);
+       Empiler(GenUn(T1));
+
+  Pile : Array[1..50] : PTR;
+  DicoT, DicoNT: Dico;
+  Dico : Array[1..50] : String[10];
+
+#+END_EXAMPLE
+
+Exemples à venir...
+
 
 * Grammaires LL(k)
 
