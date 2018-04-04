@@ -1,8 +1,14 @@
 #+LATEX_HEADER: \usepackage{mathtools}
 #+LATEX_HEADER: \newcommand{\eqdot}{\dot{=}}
 #+LATEX_HEADER: \newcommand{\sederiveen}{\xRightarrow{*}}
+#+LATEX_HEADER: \newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+#+PROPERTY: header-args :exports results
+#+PROPERTY: header-args :eval never-export
 
 * Projet compilo
+:PROPERTIES:
+:header-args: :exports results :eval never-export
+:END:
 ** Définitions
  - GPL :: Grammaire Petit Langage
  - Scanner :: analyse lexicale
@@ -266,7 +272,6 @@ Node = Enregistrement
 A: Array [1..5] of PTR:
 #+END_EXAMPLE
 
-\newpage
 ** Construction des 5 Arbres
 
 *** Fonctions Gen*
@@ -319,7 +324,7 @@ Fonction GenAtom(COD, Act : int, AType : Atomtype) : PTR
     GenAtom := P;
   fin
 #+END_EXAMPLE
-\newpage
+
 *** Arbres
 **** S
 
@@ -375,7 +380,6 @@ A[T] := GenConc(
             )
         )
 #+END_EXAMPLE
-\newpage
 
 **** F
 
