@@ -14,12 +14,6 @@
 \\usepackage[margin=2cm]{geometry}
 
 %% listing as a replacement for verbatim
-\\usepackage{listings}
-\\lstset{
-basicstyle=\\small\\ttfamily,
-columns=flexible,
-breaklines=true
-}
 
 %% parskip tweaking
 \\usepackage{indentfirst}
@@ -36,7 +30,7 @@ breaklines=true
 \\makeatother
 
 \\usepackage[french]{babel}
-\\usepackage[utf8]{inputenc}
+\\usepackage[utf8x]{inputenc}
 \\usepackage[T1]{fontenc}
 \\usepackage{graphicx}
 \\usepackage{longtable}
@@ -55,6 +49,15 @@ breaklines=true
 %%  \\usepackage{enumerate}
 \\definecolor{bg}{rgb}{0.95,0.95,0.95}
 \\tolerance=1000
+
+
+\\usepackage{listings}
+\\lstset{
+basicstyle=\\small\\ttfamily,
+columns=flexible,
+breaklines=true
+}
+
 
 %% new math commands
 \\newcommand{\\norm}[1]{\\left\\lVert#1\\right\\rVert}
@@ -75,7 +78,7 @@ breaklines=true
 
 %% color tweaking
  \\usepackage{sectsty}
- \\definecolor{turquoise}{RGB}{0,150,172}
+ \\definecolor{turquoise}{RGB}{0,0,0}
 %% \\definecolor{turquoise}{RGB}{1,1,1}
  \\definecolor{myorange}{RGB}{205,90,0}
 

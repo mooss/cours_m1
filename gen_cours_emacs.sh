@@ -10,12 +10,12 @@ verbose=$1
 #############
 orgfile='compilation_propre.org'
 texfile='compilation_propre.tex'
-latexcompilecmd="pdflatex -shell-escape -interaction nonstopmode -output-directory . $texfile"
+latexcompilecmd="xelatex -shell-escape -interaction nonstopmode -output-directory . $texfile"
 
 #########
 # setup #
 #########
-emacs $orgfile --batch -l ./org-mode_init.el org-mode_latex.el -f org-latex-export-to-latex --kill
+emacs $orgfile --batch -l ./org-mode_latex.el -f org-latex-export-to-latex --kill
 
 ###############
 # compilation #
