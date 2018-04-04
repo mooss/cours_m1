@@ -222,7 +222,7 @@ Scanne les
 Construit l'arbre GPL
 
 
-** Construction de la grammaire G@@html:<sub>@@0@@html:</sub>@@
+** Construction de la grammaire G_0
 
 *** Notation B.N.F.
  - $::= \iff \to$
@@ -413,10 +413,10 @@ A[F] := GenUnion(
         )
 #+END_EXAMPLE
 
-** Scan G@@html:<sub>@@0@@html:</sub>@@
+** Scan G_0
 Fonction analyse...
 
-** Action G@@html:<sub>@@0@@html:</sub>@@
+** Action G_0
 
 De quoi a-t-on besoin ?
 - Deux dictionnaires : DicoT, DicoNT
