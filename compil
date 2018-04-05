@@ -1,0 +1,4 @@
+pandoc --filter pandoc-citeproc --filter=pandoc-svg.py --bibliography=paper.bib --variable classoption=onecolumn --variable papersize=a4paper -s paper.md -o paper.pdf -H header.latex --number-sections
+
+
+pandoc --filter pandoc-citeproc -s paper.md -o test.pdf

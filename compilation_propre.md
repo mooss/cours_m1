@@ -5,9 +5,13 @@ header-includes:
 - '\newcommand{\sederiveen}{\xRightarrow{*}}'
 - '\newcommand{\norm}[1]{\left\lVert#1\right\rVert}'
 property: 'header-args :eval never-export'
+title: 'Compilation M1'
+author: 'Félix Jamet, Mica Ménard'
+date: 'Avril 2018'
+
 ---
 
-Projet compilo {#projet-compilo header-args=":exports results :eval never-export"}
+Projet compilo
 ==============
 
 Définitions
@@ -27,143 +31,10 @@ Schémas
 
 ![Projet Compilo](projetcompilo2.png "Projet Compilo")
 
-    digraph {
-       rankdir=LR
-       node[shape=record]
-       ansy [label="<a>Analyse|<s>Synthese"]
-       an [label="<sc>Scan|<pa>Parse|<asem>Analyse\nSemantique"]
-       gr [label="Grammaire"]
-       re [label="Reguliere"]
-       cf [label="Context Free"]
-       sy [label="Generation|<op>Optimisation|Interpretation"]
 
-       ansy:an -> an -> gr -> re,cf
-       ansy:sy -> sy
-    }
-
-    digraph G {
-    A [shape=Mdiamond];
-    subgraph clusterA {
-    S [shape=square];
-    N [shape=square];
-    E [shape=square];
-    T [shape=square];
-    F [shape=square];
-
-    }
-
-    subgraph clusterS {
-
-        edge [dir=none]
-        node [shape=none, style=none];
-        ls1  [ label = "." ];
-
-        ls21 [ label = "*" ];
-        ls22 [ label = ";" ];
-        ls31 [ label = "." ];
-        ls41 [ label = "." ];
-        ls42 [ label =< ,<BR />
-            <FONT color="red" POINT-SIZE="18">#1</FONT>> ];
-        ls51 [ label = "." ];
-        ls52 [ label = "E" ];
-        ls61 [ label = "N" ];
-        ls62 [ label = "'->'" ];
-
-        ls1  -> { ls21 ls22 };
-        ls21 -> { ls31 };
-        ls31 -> { ls41 ls42 };
-        ls41 -> { ls51 ls52 };
-        ls51 -> { ls61 ls62};
-    }
-
-    subgraph clusterN {
-        node [shape=none, style=none];
-        ln [ label=< 'IDNTER'<BR />
-            <FONT color="red" POINT-SIZE="18">#2</FONT>>];
-    }
-
-    subgraph clusterE {
-        edge [dir=none]
-        node [shape=none, style=none];
-        le1  [ label = "." ];
-        le21 [ label = "T" ];
-        le22 [ label = "*" ];
-        le31 [ label = "." ];
-        le41 [ label = "'_+_'" ];
-        le42 [ label = < T <BR />
-            <FONT color="red" POINT-SIZE="18">#3</FONT>>];
-
-        le1  -> { le21 le22 };
-        le22 -> { le31 };
-        le31 -> { le41 le42 };
-    }
-
-    subgraph clusterT {
-        edge [dir=none]
-        node [shape=none, style=none];
-        lt1  [ label = "." ];
-        lt21 [ label = "F" ];
-        lt22 [ label = "*" ];
-        lt31 [ label = "." ];
-        lt41 [ label = "'.'" ];
-        lt42 [ label = < F <BR />
-            <FONT color="red" POINT-SIZE="18">#4</FONT>>];
-
-        lt1  -> { lt21 lt22 };
-        lt22 -> { lt31 };
-        lt31 -> { lt41 lt42 };
-    }
-
-    subgraph clusterf {
-        edge [dir=none]
-        node [shape=none, style=none];
-        lf1  [ label = "_+_" ];
-        lf21  [ label = "_+_" ];
-        lf22  [ label = "." ];
-        lf31  [ label = "_+_" ];
-        lf32  [ label = "." ];
-        lf33  [ label = "." ];
-        lf34  [ label = < '/)' <BR />
-            <FONT color="red" POINT-SIZE="18">#7</FONT>>];
-        lf41  [ label = "_+_" ];
-        lf42  [ label = "." ];
-        lf44  [ label = "." ];
-        lf43  [ label = < ']' <BR />
-            <FONT color="red" POINT-SIZE="18">#6</FONT>>];
-        lf45  [ label = "'(/'" ];
-        lf51  [ label = < 'IDNTER' <BR />
-            <FONT color="red" POINT-SIZE="18">#5</FONT>>];
-        lf52  [ label = < 'ELTER' <BR />
-            <FONT color="red" POINT-SIZE="18">#5</FONT>>];
-        lf53  [ label = "." ];
-        lf54  [ label = "')'" ];
-        lf55  [ label = "'['" ];
-        lf56  [ label = "E" ];
-        lf61  [ label = "'('" ];
-        lf62  [ label = "E" ];
-        lf63  [ label = "E" ];
-
-        lf1 -> { lf21 lf22 };
-        lf21 -> {lf31 lf32};
-        lf22 -> {lf33 lf34};
-        lf31 -> {lf41 lf42};
-        lf32 -> {lf43 lf44};
-        lf33 -> {lf45 lf56};
-        lf41 -> {lf51 lf52};
-        lf42 -> {lf53 lf54};
-        lf44 -> {lf62 lf55};
-        lf53 -> {lf61 lf63};
+![Arbres de dépendances G~0~](tree.svg)
 
 
-    }
-
-        S -> ls1;
-      N -> ln;
-      E -> le1;
-      T -> lt1;
-      F -> lf1;
-
-    }
 
 ``` {.ditaa .rundoc-block rundoc-language="ditaa" rundoc-file="gplactionpcode.png" rundoc-cmdline="-Eo"}
 
@@ -253,7 +124,7 @@ $$ T \to F.['.'.F],$$
 
 ### Règle 5
 
-$$F \to 'INDTER' + 'ELTER' + '('.E.')' + '['.E.']' + '(/'.E.'/),;$$
+$$F \to 'IDNTER' + 'ELTER' + '('.E.')' + '['.E.']' + '(/'.E.'/),;$$
 
 Structure de données
 --------------------
@@ -526,15 +397,22 @@ A \rightarrow \dots{} X.Y \dots{} \in \mathcal{P}
 $$
 
 -   $X \lessdot Y$ si
-
+$$
+\begin{aligned}
+ A \to \dots X.Q \dots \in \mathcal{P} \\
+ \text{et } Q \xRightarrow{*}  Y
+\end{aligned}
 $$
 
-REFAIRE EQUATION
-$$
 
 -   $X \gtrdot Y$ si
+$$
+\begin{aligned}
+ A \doteq Y \\
+ \text{et } A \xRightarrow{*} X
+\end{aligned}
+$$
 
-REFAIRE EQUATION
 
 On peut remplir le tableau SR à partir des relations $\doteq$ ,
 $\gtrdot$ et $\lessdot$ :
@@ -558,23 +436,23 @@ Types des grammaires
 
 3
 
-:   type reguliere
+:   type régulière
 
-    ```
-    \begin{cases}
-            A \rightarrow aB\\
-            A \rightarrow a\\
-    \end{cases}
-
-    ou
-
-    \begin{cases}
-            A \rightarrow Ba\\
-            A \rightarrow a
-    \end{cases}
-    ```
+$$
+\begin{aligned}
+\begin{cases}
+        A \rightarrow aB\\
+        A \rightarrow a\\
+\end{cases}
+\text{ou }
+\begin{cases}
+        A \rightarrow Ba\\
+        A \rightarrow a
+\end{cases}
+\end{aligned}
+$$
 
 $$L(G) = \{x \in V_{T}^* / S \Rightarrow x\}$$
 
-l'intersection de deux languages de type x n'est pas forcement de type
+l'intersection de deux langages de type x n'est pas forcément de type
 x.
