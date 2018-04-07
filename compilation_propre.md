@@ -181,10 +181,10 @@ Fonction GenAtom(COD, Act : int, AType : Atomtype) : PTR
         GenStar(
           GenConc(
             GenConc(
-              GenConc(GenAtom('N', ∅, NonTerminal),
+              GenConc(GenAtom('N', '', NonTerminal),
               GenAtom('->', 5, Terminal)
             ),
-            GenAtom('E', ∅, NonTerminal)
+            GenAtom('E', '', NonTerminal)
           ),
           GenAtom(',', , Terminal)
         ),
@@ -204,11 +204,11 @@ Fonction GenAtom(COD, Act : int, AType : Atomtype) : PTR
 
     ```ruby
     A[E] := GenConc(
-              GenAtom('T', ∅, NonTerminal),
+              GenAtom('T', '', NonTerminal),
               GenStar(
                 GenConc(
                   GenAtom('+', ?, Terminal),
-                  GenAtom('T', ∅, Terminal)
+                  GenAtom('T', '', Terminal)
                   )
                 )
             )
@@ -218,11 +218,11 @@ Fonction GenAtom(COD, Act : int, AType : Atomtype) : PTR
 
     ```ruby
     A[T] := GenConc(
-              GenAtom('F', ∅, NonTerminal),
+              GenAtom('F', '', NonTerminal),
               GenStar(
                 GenConc(
                   GenAtom('.', ?, Terminal),
-                  GenAtom('T', ∅, Terminal)
+                  GenAtom('T', '', Terminal)
                   )
                 )
             )
@@ -241,7 +241,7 @@ Fonction GenAtom(COD, Act : int, AType : Atomtype) : PTR
                   GenConc(
                     GenConc(
                       GenAtom('(', ?, Terminal),
-                      GenAtom('E', ∅, NonTerminal)
+                      GenAtom('E', '', NonTerminal)
                       ),
                     GenAtom(')', ?, Terminal)
                     )
@@ -249,7 +249,7 @@ Fonction GenAtom(COD, Act : int, AType : Atomtype) : PTR
                 GenConc(
                   GenConc(
                     GenAtom('[', ?, Terminal),
-                    GenAtom('E', ∅, NonTerminal)
+                    GenAtom('E', '', NonTerminal)
                     ),
                   GenAtom(']', ?, Terminal)
                   )
@@ -257,7 +257,7 @@ Fonction GenAtom(COD, Act : int, AType : Atomtype) : PTR
               GenConc(
                 GenConc(
                   GenAtom('(', ?, Terminal),
-                  GenAtom('E', ∅, NonTerminal)
+                  GenAtom('E', '', NonTerminal)
                   ),
                 GenAtom(')', ?, Terminal)
                 )
@@ -283,13 +283,13 @@ fonction Analyse(P : PTR) : booléen
               Terminal: if P↑.cod = code then #cod = code ASCII
                 début
                   Analyse := true;
-                  if P↑.act ≠ 0 then G0-action(P↑.act)
+                  if P↑.act =/ 0 then G0-action(P↑.act)
                   scanG0;
                 fin
                         else Analyse := false;
               Non-Terminal: if Analyse(A[P↑.cod]) then
                               début
-                                if P↑.act ≠ 0 then G0-action(P↑.act);
+                                if P↑.act =/ 0 then G0-action(P↑.act);
                                 Analyse := true;
                               fin
                             else Analyse := false;
@@ -352,12 +352,23 @@ Regex : $a^nb$
 
 ### Pile
 ![Pile](./pile1.svg)
+\
+
+
 ### Dictionnaires
 ![Dictionnaires](./pile2.svg)
+\
+
+
 ### Compilation
 ![Compilation](./pile3.svg)
+\
+
+
 ### Arbre GPL
 ![Arbre GPL](./gpl.svg)
+\
+
 
 # Grammaires LL(k)
 
@@ -417,7 +428,7 @@ Reduce
 ### Opérateurs $\doteq$, $\gtrdot$, et $\lessdot$
 
 
-* **Shift**
+#### Shift {-}
    - $X \doteq Y$ si
 
   $$
@@ -432,10 +443,10 @@ $$
 \end{aligned}
 $$
 
-* **Reduce**
+#### Reduce {-}
   - $X \gtrdot Y$ si
 $$
-\begin{aligned}
+\begin {aligned}
  A \doteq Y \\
  \text{et } A \xRightarrow{*} X
 \end{aligned}
