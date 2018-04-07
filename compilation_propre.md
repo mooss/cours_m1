@@ -405,14 +405,14 @@ Génération automatique de la table SR
 ### Opérateurs $\doteq$, $\gtrdot$, et $\lessdot$
 
 
-#### Shift
--   $X \doteq Y$ si
+* **Shift**
+   - $X \doteq Y$ si
 
-$$
-A \rightarrow \dots{} X.Y \dots{} \in \mathcal{P}
-$$
+  $$
+  A \rightarrow \dots{} X.Y \dots{} \in \mathcal{P}
+  $$
 
--   $X \lessdot Y$ si
+   - $X \lessdot Y$ si
 $$
 \begin{aligned}
  A \to \dots X.Q \dots \in \mathcal{P} \\
@@ -420,8 +420,8 @@ $$
 \end{aligned}
 $$
 
-#### Reduce
--   $X \gtrdot Y$ si
+* **Reduce**
+  - $X \gtrdot Y$ si
 $$
 \begin{aligned}
  A \doteq Y \\
