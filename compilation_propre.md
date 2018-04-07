@@ -482,6 +482,28 @@ $\gtrdot$ et $\lessdot$ :
 -   (ligne $\gtrdot$ colonne) se traduit en (ligne Reduce colonne)
 
 ## Exemple de génération de table S.R.
+### GPL
+$S \to E \$$
+$E \to E+a$
+$E \to a$
+
+Type 2 car deux terminaux ('+' et 'a')
+
+### Fenêtre
+$a + a + a + a$
+
+### Questions
+1. Poignées ?
+2. Configuration de la pile
+3. Table S.R.
+
+### Dérivation
+
+$$ a + a + a + a \$ \to E + a + a + a \$ \to E + a + a \$ \to E + a \$ \to E  \$ \to S$$
+
+### Arbre et poignées
+
+![Arbre et poignées](./tree-SR2.svg)
 
 # Types des grammaires
 

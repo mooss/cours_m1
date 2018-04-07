@@ -1,0 +1,22 @@
+digraph {
+  rankdir = BT;
+  1 [shape=none label="S"]
+  2 [shape=none label="E"]
+  3 [shape=none label="$"]
+  4 [shape=none label="E"]
+  5 [shape=none label="+"]
+  6 [shape=none label="E"]
+  7 [shape=none label="+"]
+  8 [shape=none label="E"]
+  9 [shape=none label="+"]
+  10 [shape=none label="a"]
+  11 [shape=none label="a"]
+  12 [shape=none label="a"]
+  13 [shape=none label="a"]
+
+  1 -> {2 3}
+  2-> {4 10 5}
+  4 -> {6 11 7}
+  6 -> {8 12 9}
+  8 -> 13
+}
