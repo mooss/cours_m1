@@ -11,23 +11,20 @@ date: 'Avril 2018'
 
 ---
 
-Projet compilo
-==============
+# Projet compilo
 
-Définitions
------------
+## Définitions
 
 GPL
 :   Grammaire Petit Langage
 
 Scanner
-:   analyse lexicale
+:   analyseur lexical, découpe du texte en unités syntaxiquement corrects (tokens)
 
 Analyseur
 :   autres analyses (syntaxique et semantique)
 
-Schémas
--------
+## Schémas
 
 ![Projet Compilo](projetcompilo2.png "Projet Compilo")
 
@@ -71,8 +68,7 @@ PRGM                                                             |              
 
 ```
 
-Processus divers
-----------------
+## Processus divers
 
 ### Scan G~0~
 
@@ -93,8 +89,7 @@ Scanne les
 
 Construit l'arbre GPL
 
-Construction de la grammaire G~0~
----------------------------------
+## Construction de la grammaire G~0~
 
 ### Notation B.N.F.
 
@@ -126,8 +121,7 @@ $$ T \to F.['.'.F],$$
 
 $$F \to 'IDNTER' + 'ELTER' + '('.E.')' + '['.E.']' + '(/'.E.'/),;$$
 
-Structure de données
---------------------
+## Structure de données
 
 Syntaxe maison...
 
@@ -148,8 +142,7 @@ Node = Enregistrement
 A: Array [1..5] of PTR;
 ```
 
-Construction des 5 Arbres
--------------------------
+## Construction des 5 Arbres
 
 ### Fonctions Gen\*
 
@@ -296,13 +289,11 @@ Fonction GenAtom(COD, Act : int, AType : Atomtype) : PTR
             )
     ```
 
-Scan G~0~
----------
+## Scan G~0~
 
 Fonction analyse...
 
-Action G~0~
------------
+## Action G~0~
 
 De quoi a-t-on besoin ?
 
@@ -346,8 +337,7 @@ Procédure Action G0(Act : int);
 
 Exemples à venir...
 
-Grammaires LL(k)
-================
+# Grammaires LL(k)
 
 $k$ est une mesure de l'ambiguité. Représente le nombre de caractères
 qu'il est nécessaire de regarder pour déterminer quelle règle utiliser.
@@ -366,15 +356,13 @@ Avec "$\Rightarrow$" signifiant "se derivant en".
 Il ne s'agit pas d'appliquer une règle a chaque fois, mais plutot
 d'appliquer toutes les règles possibles.
 
-Suivants
---------
+## Suivants
 
 -   Si $A \rightarrow \dots Nc \dots$ alors $Suiv(N)=\{c\}$
 -   Si $A \rightarrow \dots NB \dots$ alors $Suiv(N)=Prem(B)$
 -   Si $A \rightarrow N\dots$ alors $Suiv(N)=Suiv(A)$
 
-Grammaire LL(1)
----------------
+## Grammaire LL(1)
 
 -   si $A \rightarrow \alpha{}_1 / \alpha{}_2 / \dots / \alpha{}_n$
     alors
@@ -385,11 +373,9 @@ Grammaire LL(1)
 Si une règle ne possede qu'une derivation, la règle 1 ne s'applique pas.
 Si une règle ne possede pas de suiv, la règle 2 ne s'applique pas.
 
-Tables S.R.
-===========
+# Tables S.R.
 
-Algorithme Table Analyse L.R.
------------------------------
+## Algorithme Table Analyse L.R.
 
 Shift
 :  Empiler le caractère;
@@ -400,8 +386,7 @@ Reduce
 
 ![Algorithme Table Analyse L.R.](./algo.svg)
 
-Génération automatique de la table SR
--------------------------------------
+## Génération automatique de la table SR
 
 ### Opérateurs $\doteq$, $\gtrdot$, et $\lessdot$
 
@@ -438,11 +423,9 @@ $\gtrdot$ et $\lessdot$ :
     en (ligne Shift colonne)
 -   (ligne $\gtrdot$ colonne) se traduit en (ligne Reduce colonne)
 
-Exemple de génération de table S.R.
------------------------------
+## Exemple de génération de table S.R.
 
-Types des grammaires
-====================
+# Types des grammaires
 
 0
 :   type c
