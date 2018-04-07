@@ -9,6 +9,81 @@ author: 'Félix Jamet, Mica Ménard'
 date: 'Avril 2018'
 
 ---
+# Types des grammaires
+
+0
+:   type c
+
+1
+:   type context sensitive CS $\gamma \rightarrow \beta$ avec
+    $\gamma \leq \beta$
+
+2
+:   type context free CF $A \rightarrow B$ avec $A \in V_N, B \in V^+$
+
+3
+
+:   type régulière
+
+$$
+\begin{aligned}
+\begin{cases}
+        A \rightarrow aB\\
+        A \rightarrow a\\
+\end{cases}
+\text{ou }
+\begin{cases}
+        A \rightarrow Ba\\
+        A \rightarrow a
+\end{cases}
+\end{aligned}
+$$
+
+$$L(G) = \{x \in V_{T}^* / S \Rightarrow x\}$$
+
+l'intersection de deux langages de type x n'est pas forcément de type
+x.
+
+
+# Grammaires LL(k)
+
+$k$ est une mesure de l'ambiguité. Représente le nombre de caractères
+qu'il est nécessaire de regarder pour déterminer quelle règle utiliser.
+Bien entendu, les règles LL(1) sont préférables.
+
+## First(N)
+
+-   Si $N \rightarrow A\dots$ alors $First(N)=First(A)$
+-   Si $N \rightarrow c\dots$ alors $First(N)=\{c\}$
+-   Si $N \rightarrow A . B \dots{} \text{ et si } A \sederiveen \epsilon$ alors
+    $First(N)=First(B)$
+
+Avec "$\sederiveen$" signifiant "se derive en".
+
+Il ne s'agit pas d'appliquer une règle a chaque fois, mais plutot
+d'appliquer toutes les règles possibles.
+
+## Follow(N)
+
+-   Si $A \rightarrow \dots Nc \dots$ alors $Follow(N)=\{c\}$
+-   Si $A \rightarrow \dots NB \dots$ alors $Follow(N)=First(B)$
+-   Si $A \rightarrow N\dots$ alors $Follow(N)=Follow(A)$
+
+Concernant la dernière règle, hippolyte a noté:
+-   Si $A \rightarrow \dots N$ alors $Follow(N)=Follow(A)$
+
+À déterminer.
+
+## Grammaire LL(1)
+
+-   si $A \rightarrow \alpha{}_1 / \alpha{}_2 / \dots / \alpha{}_n$
+    alors
+    $$Prem(\alpha_i) \cap Prem(\alpha_j) = \Phi,  \forall i \ne j$$
+-   si $A \Rightarrow \epsilon$ on doit avoir
+    $Prem(A) \cap Suiv(A) = \Phi$
+
+Si une règle ne possede qu'une derivation, la règle 1 ne s'applique pas.
+Si une règle ne possede pas de suiv, la règle 2 ne s'applique pas.
 
 # Projet compilo
 
@@ -368,47 +443,6 @@ Regex : $a^nb$
 ![Arbre GPL](./gpl.svg)
 \
 
-
-# Grammaires LL(k)
-
-$k$ est une mesure de l'ambiguité. Représente le nombre de caractères
-qu'il est nécessaire de regarder pour déterminer quelle règle utiliser.
-Bien entendu, les règles LL(1) sont préférables.
-
-## First(N)
-
--   Si $N \rightarrow A\dots$ alors $First(N)=First(A)$
--   Si $N \rightarrow c\dots$ alors $First(N)=\{c\}$
--   Si $N \rightarrow A . B \dots{} \text{ et si } A \sederiveen \epsilon$ alors
-    $First(N)=First(B)$
-
-Avec "$\sederiveen$" signifiant "se derive en".
-
-Il ne s'agit pas d'appliquer une règle a chaque fois, mais plutot
-d'appliquer toutes les règles possibles.
-
-## Follow(N)
-
--   Si $A \rightarrow \dots Nc \dots$ alors $Follow(N)=\{c\}$
--   Si $A \rightarrow \dots NB \dots$ alors $Follow(N)=First(B)$
--   Si $A \rightarrow N\dots$ alors $Follow(N)=Follow(A)$
-
-Concernant la dernière règle, hippolyte a noté:
--   Si $A \rightarrow \dots N$ alors $Follow(N)=Follow(A)$
-
-À déterminer.
-
-## Grammaire LL(1)
-
--   si $A \rightarrow \alpha{}_1 / \alpha{}_2 / \dots / \alpha{}_n$
-    alors
-    $$Prem(\alpha_i) \cap Prem(\alpha_j) = \Phi,  \forall i \ne j$$
--   si $A \Rightarrow \epsilon$ on doit avoir
-    $Prem(A) \cap Suiv(A) = \Phi$
-
-Si une règle ne possede qu'une derivation, la règle 1 ne s'applique pas.
-Si une règle ne possede pas de suiv, la règle 2 ne s'applique pas.
-
 # Tables S.R.
 
 ## Algorithme Table Analyse L.R.
@@ -484,38 +518,14 @@ $$ a + a + a + a \$ \to E + a + a + a \$ \to E + a + a \$ \to E + a \$ \to E  \$
 ![Arbre et poignées](./tree-SR2.svg)
 \
 
+# Génération de code
 
-# Types des grammaires
+## Mnémoniques associés à un accumulateur
 
-0
-:   type c
+## Automatisation du processus
 
-1
-:   type context sensitive CS $\gamma \rightarrow \beta$ avec
-    $\gamma \leq \beta$
+## Opérations
 
-2
-:   type context free CF $A \rightarrow B$ avec $A \in V_N, B \in V^+$
+## Registes
 
-3
-
-:   type régulière
-
-$$
-\begin{aligned}
-\begin{cases}
-        A \rightarrow aB\\
-        A \rightarrow a\\
-\end{cases}
-\text{ou }
-\begin{cases}
-        A \rightarrow Ba\\
-        A \rightarrow a
-\end{cases}
-\end{aligned}
-$$
-
-$$L(G) = \{x \in V_{T}^* / S \Rightarrow x\}$$
-
-l'intersection de deux langages de type x n'est pas forcément de type
-x.
+## Règle générale
