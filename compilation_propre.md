@@ -393,7 +393,7 @@ d'appliquer toutes les règles possibles.
 -   Si $A \rightarrow \dots NB \dots$ alors $Follow(N)=First(B)$
 -   Si $A \rightarrow N\dots$ alors $Follow(N)=Follow(A)$
 
-Concernant la dernière règle, hippolyte a noté: 
+Concernant la dernière règle, hippolyte a noté:
 -   Si $A \rightarrow \dots N$ alors $Follow(N)=Follow(A)$
 
 À déterminer.
@@ -482,6 +482,8 @@ $$ a + a + a + a \$ \to E + a + a + a \$ \to E + a + a \$ \to E + a \$ \to E  \$
 ### Arbre et poignées
 
 ![Arbre et poignées](./tree-SR2.svg)
+\
+
 
 # Types des grammaires
 
