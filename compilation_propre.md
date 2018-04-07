@@ -4,7 +4,6 @@ header-includes:
 - '\newcommand{\eqdot}{\dot{=}}'
 - '\newcommand{\sederiveen}{\xRightarrow{*}}'
 - '\newcommand{\norm}[1]{\left\lVert#1\right\rVert}'
-property: 'header-args :eval never-export'
 title: 'Compilation M1'
 author: 'Félix Jamet, Mica Ménard'
 date: 'Avril 2018'
@@ -283,13 +282,13 @@ fonction Analyse(P : PTR) : booléen
               Terminal: if P↑.cod = code then #cod = code ASCII
                 début
                   Analyse := true;
-                  if P↑.act =/ 0 then G0-action(P↑.act)
+                  if P↑.act != 0 then G0-action(P↑.act)
                   scanG0;
                 fin
                         else Analyse := false;
               Non-Terminal: if Analyse(A[P↑.cod]) then
                               début
-                                if P↑.act =/ 0 then G0-action(P↑.act);
+                                if P↑.act != 0 then G0-action(P↑.act);
                                 Analyse := true;
                               fin
                             else Analyse := false;
