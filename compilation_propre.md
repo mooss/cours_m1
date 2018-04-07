@@ -354,7 +354,7 @@ Regex : $a^nb$
 \
 
 
-### Dictionnaires
+### Dictionnaires
 ![Dictionnaires](./pile2.svg)
 \
 
@@ -427,7 +427,7 @@ Reduce
 ### Opérateurs $\doteq$, $\gtrdot$, et $\lessdot$
 
 
-#### Shift {-}
+#### Shift {-}
    - $X \doteq Y$ si
 
   $$
