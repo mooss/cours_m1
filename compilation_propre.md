@@ -80,6 +80,7 @@ Une grammaire est forcément composée de plusieurs règles, séparées par des 
 
 $$N \to 'IDNTER',$$
 'INDTER' signifie identificateur non terminal.
+
 ### Règle 3
 
 $$ E \to T.['+'.T],$$
