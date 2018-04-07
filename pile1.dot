@@ -1,0 +1,12 @@
+digraph G {
+nodesep = 0.5;
+rankdir=LR
+node [shape=record];
+
+node0[ label = "...|...|<f1>#5|<f0>#2"]
+
+node1[ label = "{IDNTER | 2 | NT}" xlabel=<S<sub>0</sub>>]
+
+node0:f0->node1
+
+}
