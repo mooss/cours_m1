@@ -21,8 +21,9 @@ GPL
 Scanner
 :   analyseur lexical, découpe du texte en unités syntaxiquement corrects (tokens)
 
-Analyseur
-:   autres analyses (syntaxique et semantique)
+Parseur
+:   analyse syntaxique, s'assure que les tokens soient syntaxiquement corrects
+
 
 ## Schémas
 
@@ -32,41 +33,7 @@ Analyseur
 ![Arbres de dépendances G~0~](tree.svg)
 
 
-
-``` {.ditaa .rundoc-block rundoc-language="ditaa" rundoc-file="gplactionpcode.png" rundoc-cmdline="-Eo"}
-
-
-       +------------------------+---------------------+
-       |                        |                     |
-       |  Scan-GPL              | Arbre               |
-       |                        |                     |
-       |  Analyse               |                     |
-       |                        |                     |
-       |                        |                     |
-       |                        |                     |
-       |                        +---------------------+
-       |                                              |     +-----------+
-       |                                              |     |           |
-       |                        +---------------------+     |           v
-       |                        |                     +-----+    |                     |              |                     |
-       |                        | GPL.Action          |          |                     |              |                     |
-       |                        |                     |          +---------------------+              +---------------------+
-       |                        |                     |          |                     |              |                     |
-       |                        |                     |          +---------------------+              +---------------------+
-       |                        |                     |          |                     |              |                     |
- +---->|                        |                     |          +---------------------+              +---------------------+
- |     +------------------------+---------------------+          |                     |              |                     |
- |                                                               +---------------------+              +---------------------+
- |                                                               |                     |              |                     |
- |                                                               +---------------------+              +---------------------+
- |                                                               |                     |              |                     |
- |                                                               +---------------------+              +---------------------+
-PRGM                                                             |                     |              |                     |
-                                                                 +---------------------+              +---------------------+
-
-                                                                      P_code                                  Pilex
-
-```
+![Actions de la grammaire GPL](gplactionpcode.png)
 
 ## Processus divers
 
