@@ -12,4 +12,4 @@ compilation_propre.pdf: gplactionpcode.png
 	$(MD_TO_PDF) -s $< -o $@
 
 %.png: %.ditaa
-	ditaa $< -oSE
+	ditaa $< -oSE > /dev/null
