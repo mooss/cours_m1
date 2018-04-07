@@ -4,7 +4,6 @@ header-includes:
 - '\newcommand{\eqdot}{\dot{=}}'
 - '\newcommand{\sederiveen}{\xRightarrow{*}}'
 - '\newcommand{\norm}[1]{\left\lVert#1\right\rVert}'
-property: 'header-args :eval never-export'
 title: 'Compilation M1'
 author: 'Félix Jamet, Mica Ménard'
 date: 'Avril 2018'
@@ -21,8 +20,9 @@ GPL
 Scanner
 :   analyseur lexical, découpe du texte en unités syntaxiquement corrects (tokens)
 
-Analyseur
-:   autres analyses (syntaxique et semantique)
+Parseur
+:   analyse syntaxique, s'assure que les tokens soient syntaxiquement corrects
+
 
 ## Schémas
 
@@ -32,41 +32,7 @@ Analyseur
 ![Arbres de dépendances G~0~](tree.svg)
 
 
-
-``` {.ditaa .rundoc-block rundoc-language="ditaa" rundoc-file="gplactionpcode.png" rundoc-cmdline="-Eo"}
-
-
-       +------------------------+---------------------+
-       |                        |                     |
-       |  Scan-GPL              | Arbre               |
-       |                        |                     |
-       |  Analyse               |                     |
-       |                        |                     |
-       |                        |                     |
-       |                        |                     |
-       |                        +---------------------+
-       |                                              |     +-----------+
-       |                                              |     |           |
-       |                        +---------------------+     |           v
-       |                        |                     +-----+    |                     |              |                     |
-       |                        | GPL.Action          |          |                     |              |                     |
-       |                        |                     |          +---------------------+              +---------------------+
-       |                        |                     |          |                     |              |                     |
-       |                        |                     |          +---------------------+              +---------------------+
-       |                        |                     |          |                     |              |                     |
- +---->|                        |                     |          +---------------------+              +---------------------+
- |     +------------------------+---------------------+          |                     |              |                     |
- |                                                               +---------------------+              +---------------------+
- |                                                               |                     |              |                     |
- |                                                               +---------------------+              +---------------------+
- |                                                               |                     |              |                     |
- |                                                               +---------------------+              +---------------------+
-PRGM                                                             |                     |              |                     |
-                                                                 +---------------------+              +---------------------+
-
-                                                                      P_code                                  Pilex
-
-```
+![Actions de la grammaire GPL](gplactionpcode.png)
 
 ## Processus divers
 
@@ -93,29 +59,37 @@ Construit l'arbre GPL
 
 ### Notation B.N.F.
 
--   $::= \iff \to$
--   $[X] \iff X.X.X...X \text{(n fois)}, n \geq 0$
--   $x \iff \cdot$
+ - $::= \iff \to$
+ - $[X] \iff X.X.X...X \text{(n fois)}, n \geq 0$
+ - $(/X/) \iff X \text{ ou Vide}$
+ - $/ \iff +$
+ - $concat \iff .$
+ - $'X'$ correspond à un élément terminal
+<!-- -   $x \iff \cdot$ -->
 
 ### Règle 1
 
 $$S \to [N.'\to' . E . ','].';',$$
-
--   $\text{concatenation} \iff \cdot$
--   pour differencier les terminaux et les non terminaux, on met les
-    terminaux entre guillemets
+Une grammaire est forcément composée de plusieurs règles, séparées par des ',' et terminée par un ';'.
+<!-- -   $\text{concatenation} \iff \cdot$ -->
+<!-- -   pour differencier les terminaux et les non terminaux, on met les -->
+<!--     terminaux entre guillemets -->
 
 ### Règle 2
 
 $$N \to 'IDNTER',$$
+'INDTER' signifie identificateur non terminal.
 
 ### Règle 3
 
-$$ E \to R.['+'.T],$$
+$$ E \to T.['+'.T],$$
+E est une expression qui peut être un terme ou un autre.
+
 
 ### Règle 4
 
 $$ T \to F.['.'.F],$$
+Un terme T peut être composé d'un seul facteur F ou de facteurs concaténés.
 
 ### Règle 5
 
@@ -308,13 +282,13 @@ fonction Analyse(P : PTR) : booléen
               Terminal: if P↑.cod = code then #cod = code ASCII
                 début
                   Analyse := true;
-                  if P↑.act =/ 0 then G0-action(P↑.act)
+                  if P↑.act != 0 then G0-action(P↑.act)
                   scanG0;
                 fin
                         else Analyse := false;
               Non-Terminal: if Analyse(A[P↑.cod]) then
                               début
-                                if P↑.act =/ 0 then G0-action(P↑.act);
+                                if P↑.act != 0 then G0-action(P↑.act);
                                 Analyse := true;
                               fin
                             else Analyse := false;
@@ -380,7 +354,7 @@ Regex : $a^nb$
 \
 
 
-### Dictionnaires
+### Dictionnaires
 ![Dictionnaires](./pile2.svg)
 \
 
@@ -401,24 +375,28 @@ $k$ est une mesure de l'ambiguité. Représente le nombre de caractères
 qu'il est nécessaire de regarder pour déterminer quelle règle utiliser.
 Bien entendu, les règles LL(1) sont préférables.
 
-Premier(N)
-----------
+## First(N)
 
--   Si $N \rightarrow A\dots$ alors $Premier(N)=Premier(A)$
--   Si $N \rightarrow c\dots$ alors $Premier(N)=\{c\}$
--   Si $N \rightarrow A . B \dots{} \wedge A \Rightarrow \epsilon$ alors
-    $Premier(N)=Premier(B)$
+-   Si $N \rightarrow A\dots$ alors $First(N)=First(A)$
+-   Si $N \rightarrow c\dots$ alors $First(N)=\{c\}$
+-   Si $N \rightarrow A . B \dots{} \text{ et si } A \sederiveen \epsilon$ alors
+    $First(N)=First(B)$
 
-Avec "$\Rightarrow$" signifiant "se derivant en".
+Avec "$\sederiveen$" signifiant "se derive en".
 
 Il ne s'agit pas d'appliquer une règle a chaque fois, mais plutot
 d'appliquer toutes les règles possibles.
 
-## Suivants
+## Follow(N)
 
--   Si $A \rightarrow \dots Nc \dots$ alors $Suiv(N)=\{c\}$
--   Si $A \rightarrow \dots NB \dots$ alors $Suiv(N)=Prem(B)$
--   Si $A \rightarrow N\dots$ alors $Suiv(N)=Suiv(A)$
+-   Si $A \rightarrow \dots Nc \dots$ alors $Follow(N)=\{c\}$
+-   Si $A \rightarrow \dots NB \dots$ alors $Follow(N)=First(B)$
+-   Si $A \rightarrow N\dots$ alors $Follow(N)=Follow(A)$
+
+Concernant la dernière règle, hippolyte a noté: 
+-   Si $A \rightarrow \dots N$ alors $Follow(N)=Follow(A)$
+
+À déterminer.
 
 ## Grammaire LL(1)
 
@@ -449,7 +427,7 @@ Reduce
 ### Opérateurs $\doteq$, $\gtrdot$, et $\lessdot$
 
 
-#### Shift {-}
+#### Shift {-}
    - $X \doteq Y$ si
 
   $$
