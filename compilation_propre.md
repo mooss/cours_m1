@@ -320,7 +320,8 @@ Procédure Action G0(Act : int);
     1: Dépiler(T1);
        Dépiler(T2);
        A[T2↑.cod + 5] := T1; ##Arbres GPL commencent à 6
-    2: Empiler(GenAtom(Recherche(DicoT), Action, CAType)) ##donne la partie gauche d'une règle
+    2: Empiler(GenAtom(Recherche(DicoT), Action, CAType)) ##donne la
+      ##partie gauche d'une règle
       ##Recherche() stocke le token si non stocké dans dico
     3: Dépiler(T1);
        Dépiler(T2);
