@@ -133,7 +133,7 @@ Syntaxe maison...
 
 ```ruby
 Type Atomtype = (Terminal, Non-Terminal);
-     Operation = (Conc, Union, Star, UN, Atom); //Atom = {IDNTER, ELTER}
+     Operation = (Conc, Union, Star, UN, Atom); ##Atom = {IDNTER, ELTER}
 PTR = ↑Node
 
 Node = Enregistrement
@@ -174,7 +174,7 @@ Fonction GenUnion(P1, P2 : PTR) : PTR;
     GenUnion := P;
   fin
 
-Fonction GenStar(P1 : PTR) : PTR; //0 ou n fois
+Fonction GenStar(P1 : PTR) : PTR; ##0 ou n fois
   var P:PTR;
   début
     New(P, star);
@@ -183,7 +183,7 @@ Fonction GenStar(P1 : PTR) : PTR; //0 ou n fois
     GenStar := P;
   fin
 
-Fonction GenUn(P1 : PTR) : PTR; //0 ou une fois
+Fonction GenUn(P1 : PTR) : PTR; ##0 ou une fois
   var P:PTR;
   début
     New(P, un);
@@ -213,10 +213,10 @@ Fonction GenAtom(COD, Act : int, AType : Atomtype) : PTR
         GenStar(
           GenConc(
             GenConc(
-              GenConc(GenAtom('N', \varnothing{}, NonTerminal),
+              GenConc(GenAtom('N', ∅, NonTerminal),
               GenAtom('->', 5, Terminal)
             ),
-            GenAtom('E', \varnothing{}, NonTerminal)
+            GenAtom('E', ∅, NonTerminal)
           ),
           GenAtom(',', , Terminal)
         ),
@@ -227,7 +227,7 @@ Fonction GenAtom(COD, Act : int, AType : Atomtype) : PTR
 2.  N
 
     ```ruby
-    //Ajouts de ma part, je ne suis pas sûr des résultats :
+    ##Ajouts de ma part, je ne suis pas sûr des résultats :
 
     A[N] := GenAtom('IDNTER', , Terminal);
     ```
@@ -236,11 +236,11 @@ Fonction GenAtom(COD, Act : int, AType : Atomtype) : PTR
 
     ```ruby
     A[E] := GenConc(
-              GenAtom('T', \varnothing{}, NonTerminal),
+              GenAtom('T', ∅, NonTerminal),
               GenStar(
                 GenConc(
                   GenAtom('+', ?, Terminal),
-                  GenAtom('T', \varnothing{}, Terminal)
+                  GenAtom('T', ∅, Terminal)
                   )
                 )
             )
@@ -250,11 +250,11 @@ Fonction GenAtom(COD, Act : int, AType : Atomtype) : PTR
 
     ```ruby
     A[T] := GenConc(
-              GenAtom('F', \varnothing{}, NonTerminal),
+              GenAtom('F', ∅, NonTerminal),
               GenStar(
                 GenConc(
                   GenAtom('.', ?, Terminal),
-                  GenAtom('T', \varnothing{}, Terminal)
+                  GenAtom('T', ∅, Terminal)
                   )
                 )
             )
@@ -273,7 +273,7 @@ Fonction GenAtom(COD, Act : int, AType : Atomtype) : PTR
                   GenConc(
                     GenConc(
                       GenAtom('(', ?, Terminal),
-                      GenAtom('E', \varnothing{}, NonTerminal)
+                      GenAtom('E', ∅, NonTerminal)
                       ),
                     GenAtom(')', ?, Terminal)
                     )
@@ -281,7 +281,7 @@ Fonction GenAtom(COD, Act : int, AType : Atomtype) : PTR
                 GenConc(
                   GenConc(
                     GenAtom('[', ?, Terminal),
-                    GenAtom('E', \varnothing{}, NonTerminal)
+                    GenAtom('E', ∅, NonTerminal)
                     ),
                   GenAtom(']', ?, Terminal)
                   )
@@ -289,7 +289,7 @@ Fonction GenAtom(COD, Act : int, AType : Atomtype) : PTR
               GenConc(
                 GenConc(
                   GenAtom('(', ?, Terminal),
-                  GenAtom('E', \varnothing{}, NonTerminal)
+                  GenAtom('E', ∅, NonTerminal)
                   ),
                 GenAtom(')', ?, Terminal)
                 )
@@ -299,8 +299,41 @@ Fonction GenAtom(COD, Act : int, AType : Atomtype) : PTR
 Scan G~0~
 ---------
 
-Fonction analyse...
+```ruby
 
+fonction Analyse(P : PTR) : booléen
+  début
+    case P↑.class of
+      Conc: if Analyse(P↑.left) then Analyse := True
+                                else Analyse := Analyse(P↑.right);
+      Union: if Analyse(P↑.left) then Analyse := True
+                                else Analyse := Analyse(P↑.right);
+      Star: Analyse := true;
+            while Analyse(P↑.stare) do;
+      Un: Analyse := true;
+            if Analyse(P↑.une) then;
+      Atom: case P↑.Atype of
+              Terminal: if P↑.cod = code then #cod = code ASCII
+                début
+                  Analyse := true;
+                  if P↑.act ≠ 0 then G0-action(P↑.act)
+                  scanG0;
+                fin
+                        else Analyse := false;
+              Non-Terminal: if Analyse(A[P↑.cod]) then
+                              début
+                                if P↑.act ≠ 0 then G0-action(P↑.act);
+                                Analyse := true;
+                              fin
+                            else Analyse := false;
+  fin
+
+Main() #vérifie si une grammaire est correcte
+{
+  scan;
+  if Analyse(A[s]) then write('OK');
+}
+```
 Action G~0~
 -----------
 
@@ -344,7 +377,16 @@ Procédure Action G0(Act : int);
 
 ```
 
-Exemples à venir...
+Exemple
+--------
+
+GPL : $S_0 \to ['a'].'b',;$
+Regex : $a^nb$
+
+![Pile](./pile1.svg)
+![Dictionnaires](./pile2.svg)
+![Compilation](./pile3.svg)
+![Arbre GPL](./gpl.svg)
 
 Grammaires LL(k)
 ================

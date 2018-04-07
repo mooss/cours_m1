@@ -1,0 +1,23 @@
+<svg width="108pt" height="149pt" viewBox="0 0 108 149" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 144.6)">
+<title>G</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-144.6 103.871,-144.6 103.871,4 -4,4"></polygon>
+<!-- node0 -->
+<g id="node1" class="node">
+<title>node0</title>
+<polygon fill="none" stroke="#000000" points="45.871,-17.3 45.871,-53.3 99.871,-53.3 99.871,-17.3 45.871,-17.3"></polygon>
+<text text-anchor="start" x="65.4797" y="-32.2" font-family="Times,serif" font-size="14.00" fill="#000000">S</text>
+<text text-anchor="start" x="73.2623" y="-32.2" font-family="Times,serif" baseline-shift="sub" font-size="14.00" fill="#000000">0</text>
+<text text-anchor="middle" x="22.9355" y="-4.2" font-family="Times,serif" font-size="14.00" fill="#000000">DicoNT</text>
+</g>
+<!-- node1 -->
+<g id="node2" class="node">
+<title>node1</title>
+<polygon fill="none" stroke="#000000" points="45.871,-90.5 45.871,-140.1 99.871,-140.1 99.871,-90.5 45.871,-90.5"></polygon>
+<text text-anchor="middle" x="72.871" y="-123.5" font-family="Times,serif" font-size="14.00" fill="#000000">b</text>
+<polyline fill="none" stroke="#000000" points="45.871,-115.3 99.871,-115.3 "></polyline>
+<text text-anchor="middle" x="72.871" y="-98.7" font-family="Times,serif" font-size="14.00" fill="#000000">a</text>
+<text text-anchor="middle" x="27.9888" y="-77.4" font-family="Times,serif" font-size="14.00" fill="#000000">DicoT</text>
+</g>
+</g>
+</svg>

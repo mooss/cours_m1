@@ -1,0 +1,9 @@
+digraph G {
+nodesep = 0.5;
+rankdir=LR
+node [shape=record];
+
+node0[ label = <S<sub>0</sub>> xlabel="DicoNT"]
+node1[ label = "b|a" xlabel="DicoT"]
+
+}

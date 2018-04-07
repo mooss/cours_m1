@@ -1,0 +1,34 @@
+digraph G {
+0 [shape="none" label=<S<sub>0</sub>>]
+00 [shape="none" label=<&rArr;>]
+000 [shape="none" label=<"['a'].'b',;" <BR />
+    <FONT color="red" POINT-SIZE="18">#1</FONT>> ];
+1 [shape="none" label="N"]
+2 [shape="none" label="E"]
+3 [shape="none" label=< 'IDNTER'<BR />
+    <FONT color="red" POINT-SIZE="18">#2</FONT>> ];
+4 [shape="none" label="T"]
+5 [shape="none" label="F"]
+6 [shape="none" label="'.'"]
+7 [shape="none" label=<"F" <BR />
+    <FONT color="red" POINT-SIZE="18">#4</FONT>> ];
+8 [shape="none" label="["]
+9 [shape="none" label="E"]
+10 [shape="none" label=<"]" <BR />
+    <FONT color="red" POINT-SIZE="18">#6</FONT>> ];
+11 [shape="none" label="F"]
+12 [shape="none" label=<"Elter" <BR />
+    <FONT color="red" POINT-SIZE="18">#5</FONT>> ];
+13 [shape="none" label="'a'"]
+14 [shape="none" label=<"Elter" <BR />
+    <FONT color="red" POINT-SIZE="18">#5</FONT>> ];
+15 [shape="none" label="'b'"]
+
+0 -> 1 [dir=none]
+000 -> 2 [dir=none]
+1 -> 3
+2 -> 4 -> { 5 6 7}
+5 -> {8 9 10}
+9 -> 11 -> 12 -> 13
+7 -> 14 -> 15
+}
