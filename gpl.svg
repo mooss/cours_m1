@@ -26,7 +26,7 @@
 <!-- 000 -->
 <g id="node3" class="node">
 <title>000</title>
-<text text-anchor="start" x="164.5734" y="-544.4" font-family="Times,serif" font-size="14.00" fill="#000000">"['a'].'b',;" </text>
+<text text-anchor="start" x="164.5734" y="-544.4" font-family="Times,serif" font-size="14.00" fill="#000000">['a'].'b',;</text>
 <text text-anchor="start" x="182.0684" y="-526.8" font-family="Times,serif" font-size="14.00" fill="#000000"> &nbsp;&nbsp;&nbsp;</text>
 <text text-anchor="start" x="196.0684" y="-526.8" font-family="Times,serif" font-size="18.00" fill="#ff0000">#1</text>
 </g>
@@ -124,7 +124,7 @@
 <!-- 10 -->
 <g id="node13" class="node">
 <title>10</title>
-<text text-anchor="start" x="188.2775" y="-244.4" font-family="Times,serif" font-size="14.00" fill="#000000">"]" </text>
+<text text-anchor="start" x="188.2775" y="-244.4" font-family="Times,serif" font-size="14.00" fill="#000000">]</text>
 <text text-anchor="start" x="182.0684" y="-226.8" font-family="Times,serif" font-size="14.00" fill="#000000"> &nbsp;&nbsp;&nbsp;</text>
 <text text-anchor="start" x="196.0684" y="-226.8" font-family="Times,serif" font-size="18.00" fill="#ff0000">#6</text>
 </g>
