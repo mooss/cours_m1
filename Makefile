@@ -1,5 +1,5 @@
 TARGETS=compilation_propre.pdf
-MD_TO_PDF=pandoc --filter=pandoc-svg.py --filter pandoc-citeproc --number-sections
+MD_TO_PDF=pandoc --filter=pandoc-svg.py --filter pandoc-citeproc --number-sections --table-of-contents
 
 all: $(TARGETS)
 
