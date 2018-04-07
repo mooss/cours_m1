@@ -131,10 +131,10 @@ Structure de données
 
 Syntaxe maison...
 
-``` {.example}
+```ruby
 Type Atomtype = (Terminal, Non-Terminal);
-     Operation = (Conc, Union, Star, UN, Atom);
-PTR = \uparrow{} Node
+     Operation = (Conc, Union, Star, UN, Atom); //Atom = {IDNTER, ELTER}
+PTR = ↑Node
 
 Node = Enregistrement
        case operation of
@@ -145,7 +145,7 @@ Node = Enregistrement
        ATOM: (COD, Act : int ; AType: Atomtype);
        EndEnregistrement
 
-A: Array [1..5] of PTR:
+A: Array [1..5] of PTR;
 ```
 
 Construction des 5 Arbres
@@ -153,14 +153,14 @@ Construction des 5 Arbres
 
 ### Fonctions Gen\*
 
-``` {.example}
+```ruby
 Fonction GenConc(P1, P2 : PTR) : PTR;
   var P : PTR;
 debut
   New(P, conc);
-  P \uparrow{}.left := P1;
-  P \uparrow{}.right := P2;
-  P \uparrow{}.class := conc;
+  P↑.left := P1;  
+  P↑.right := P2;
+  P↑.class := conc;
   GenConc := P;
 fin
 
@@ -168,9 +168,9 @@ Fonction GenUnion(P1, P2 : PTR) : PTR;
   var P : PTR;
   début
     New(P, union);
-    P \uparrow{}.left := P1;
-    P \uparrow{}.right := P2;
-    P \uparrow{}.class := union;
+    P↑.left := P1;
+    P↑.right := P2;
+    P↑.class := union;
     GenUnion := P;
   fin
 
@@ -178,8 +178,8 @@ Fonction GenStar(P1 : PTR) : PTR; //0 ou n fois
   var P:PTR;
   début
     New(P, star);
-    P \uparrow{}.stare := P1;
-    P \uparrow{}.class := star;
+    P↑.stare := P1;
+    P↑.class := star;
     GenStar := P;
   fin
 
@@ -187,8 +187,8 @@ Fonction GenUn(P1 : PTR) : PTR; //0 ou une fois
   var P:PTR;
   début
     New(P, un);
-    P \uparrow{}.une := P1;
-    P \uparrow{}.class := un;
+    P↑.une := P1;
+    P↑.class := un;
     GenUn := P;
   fin
 
@@ -196,9 +196,9 @@ Fonction GenAtom(COD, Act : int, AType : Atomtype) : PTR
   var P:PTR;
   début
     New(P, atom);
-    P \uparrow{}.COD := COD;
-    P \uparrow{}.Act := Act;
-    P \uparrow{}.AType := AType;
+    P↑.COD := COD;
+    P↑.Act := Act;
+    P↑.AType := AType;
     GenAtom := P;
   fin
 ```
@@ -207,7 +207,7 @@ Fonction GenAtom(COD, Act : int, AType : Atomtype) : PTR
 
 1.  S
 
-    ``` {.example}
+    ```ruby
     A[S] :=
       GenConc(
         GenStar(
@@ -226,7 +226,7 @@ Fonction GenAtom(COD, Act : int, AType : Atomtype) : PTR
 
 2.  N
 
-    ``` {.example}
+    ```ruby
     //Ajouts de ma part, je ne suis pas sûr des résultats :
 
     A[N] := GenAtom('IDNTER', , Terminal);
@@ -234,7 +234,7 @@ Fonction GenAtom(COD, Act : int, AType : Atomtype) : PTR
 
 3.  E
 
-    ``` {.example}
+    ```ruby
     A[E] := GenConc(
               GenAtom('T', \varnothing{}, NonTerminal),
               GenStar(
@@ -248,7 +248,7 @@ Fonction GenAtom(COD, Act : int, AType : Atomtype) : PTR
 
 4.  T
 
-    ``` {.example}
+    ```ruby
     A[T] := GenConc(
               GenAtom('F', \varnothing{}, NonTerminal),
               GenStar(
@@ -262,7 +262,7 @@ Fonction GenAtom(COD, Act : int, AType : Atomtype) : PTR
 
 5.  F
 
-    ``` {.example}
+    ```ruby
     A[F] := GenUnion(
               GenUnion(
                 GenUnion(
@@ -306,13 +306,13 @@ Action G~0~
 
 De quoi a-t-on besoin ?
 
--   Deux dictionnaires : DicoT, DicoNT
--   Tableau pile\[I\] : Tableau de pointeurs
+-   Deux dictionnaires : $DicoT$, $DicoNT$
+-   Tableau $pile[I]$ : Tableau de pointeurs
 
 Remarque : les nombres du case correspondent aux actions associées aux
 numéros inscrits dans les arbres.
 
-``` {.example}
+```ruby
 Procédure Action G0(Act : int);
   var T1, T2 : PTR;
   début
@@ -384,12 +384,28 @@ Grammaire LL(1)
 Si une règle ne possede qu'une derivation, la règle 1 ne s'applique pas.
 Si une règle ne possede pas de suiv, la règle 2 ne s'applique pas.
 
+Tables S.R.
+===========
+
+Algorithme Table Analyse L.R.
+-----------------------------
+
+Shift
+:  Empiler le caractère;
+   scan;
+
+Reduce
+:  Remplacer la partie droite au sommet de la pile par la partie gauche ($A \to a$)
+
+![Algorithme Table Analyse L.R.](./algo.svg)
+
 Génération automatique de la table SR
-=====================================
+-------------------------------------
 
-Opérateurs $\doteq$, $\gtrdot$, et $\lessdot$
----------------------------------------------
+### Opérateurs $\doteq$, $\gtrdot$, et $\lessdot$
 
+
+#### Shift
 -   $X \doteq Y$ si
 
 $$
@@ -404,7 +420,7 @@ $$
 \end{aligned}
 $$
 
-
+#### Reduce
 -   $X \gtrdot Y$ si
 $$
 \begin{aligned}
@@ -420,6 +436,9 @@ $\gtrdot$ et $\lessdot$ :
 -   (ligne $\doteq$ colonne) et (ligne $\lessdot$ colonne) se traduisent
     en (ligne Shift colonne)
 -   (ligne $\gtrdot$ colonne) se traduit en (ligne Reduce colonne)
+
+Exemple de génération de table S.R.
+-----------------------------
 
 Types des grammaires
 ====================

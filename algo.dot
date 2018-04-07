@@ -1,0 +1,14 @@
+digraph G {
+1 [shape=rectangle, label="scan; \n Empile(w); \n scan;"];
+2 [label="table[sommet, w]"]
+3 [shape=rectangle, label="Accept"]
+4 [shape=rectangle, label="Empile(w); \n scan;"]
+5 [shape=rectangle, label="Remplace partie droite \n par partie gauche" ]
+6 [shape=rectangle, label="Erreur"]
+1 -> 2;
+2 -> {3, 6};
+2 ->  5 [label=<<font color="#088446">reduce</font>>, color="#088446"];
+2 -> 4 [label=<<font color="#CB5404">shift</font>>, color="#CB5404"];
+4 -> 2;
+5 -> 2;
+}
