@@ -4,9 +4,12 @@ header-includes:
 - '\newcommand{\eqdot}{\dot{=}}'
 - '\newcommand{\sederiveen}{\xRightarrow{*}}'
 - '\newcommand{\norm}[1]{\left\lVert#1\right\rVert}'
+- '\usepackage{textcomp}'
+- '\newcommand{\mquote}[1]{\textnormal{\textquotesingle}#1\textnormal{\textquotesingle}}'
 title: 'Compilation M1'
 author: 'Félix Jamet, Mica Ménard'
 date: 'Avril 2018'
+
 
 ---
 # Types des grammaires
@@ -138,36 +141,35 @@ Construit l'arbre GPL
  - $(/X/) \iff X \text{ ou Vide}$
  - $/ \iff +$
  - $concat \iff .$
- - $'X'$ correspond à un élément terminal
+ - $\mquote{X}$ correspond à un élément terminal
 <!-- -   $x \iff \cdot$ -->
 
 ### Règle 1
 
-$$S \to [N.'\to' . E . ','].';',$$
-Une grammaire est forcément composée de plusieurs règles, séparées par des ',' et terminée par un ';'.
+$$S \to [N.\mquote{\to} . E . \mquote{,}].\mquote{;},$$
+Une grammaire est forcément composée de plusieurs règles, séparées par des $\mquote{,}$ et terminée par un $\mquote{;}$.
 <!-- -   $\text{concatenation} \iff \cdot$ -->
 <!-- -   pour differencier les terminaux et les non terminaux, on met les -->
 <!--     terminaux entre guillemets -->
 
 ### Règle 2
 
-$$N \to 'IDNTER',$$
-'INDTER' signifie identificateur non terminal.
+$$N \to \mquote{IDNTER},$$
+$\mquote{INDTER}$ signifie identificateur non terminal.
 
 ### Règle 3
 
-$$ E \to T.['+'.T],$$
+$$ E \to T.[\mquote{+}.T],$$
 E est une expression qui peut être un terme ou un autre.
-
 
 ### Règle 4
 
-$$ T \to F.['.'.F],$$
+$$ T \to F.[\mquote{.}.F],$$
 Un terme T peut être composé d'un seul facteur F ou de facteurs concaténés.
 
 ### Règle 5
 
-$$F \to 'IDNTER' + 'ELTER' + '('.E.')' + '['.E.']' + '(/'.E.'/),;$$
+$$F \to \mquote{IDNTER} + \mquote{ELTER} + \mquote{(}.E.\mquote{)} + \mquote{[}.E.\mquote{]} + \mquote{(/}.E.\mquote{/)},;$$
 
 ## Structure de données
 
