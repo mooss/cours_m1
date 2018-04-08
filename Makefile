@@ -4,7 +4,7 @@ MD_TO_PDF=pandoc --filter=pandoc-svg.py --filter pandoc-citeproc --number-sectio
 # règles de dépendances
 all: $(TARGETS)
 
-compilation_propre.pdf: gplactionpcode.png algo.svg  gpl.svg  pile1.svg  pile2.svg  pile3.svg  tree-SR2.svg tree.svg
+compilation_propre.pdf: img/gplactionpcode.png img/algo.svg img/gpl.svg img/pile1.svg img/pile2.svg img/pile3.svg img/tree-SR2.svg img/tree.svg
 
 # règles de génération
 %.pdf: %.md

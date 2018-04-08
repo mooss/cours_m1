@@ -103,13 +103,13 @@ Parseur
 
 ## Schémas
 
-![Projet Compilo](projetcompilo2.png "Projet Compilo")
+![Projet Compilo](img/projetcompilo2.png "Projet Compilo")
 
 
-![Arbres de dépendances G~0~](tree.svg)
+![Arbres de dépendances G~0~](img/tree.svg)
 
 
-<!-- ![Actions de la grammaire GPL](gplactionpcode.png) -->
+<!-- ![Actions de la grammaire GPL](img/gplactionpcode.png) -->
 
 ## Processus divers
 
@@ -426,22 +426,22 @@ GPL : $S_0 \to ['a'].'b',;$
 Regex : $a^nb$
 
 ### Pile
-![Pile](./pile1.svg)
+![Pile](img/pile1.svg)
 \
 
 
 ### Dictionnaires
-![Dictionnaires](./pile2.svg)
+![Dictionnaires](img/pile2.svg)
 \
 
 
 ### Compilation
-![Compilation](./pile3.svg)
+![Compilation](img/pile3.svg)
 \
 
 
 ### Arbre GPL
-![Arbre GPL](./gpl.svg)
+![Arbre GPL](img/gpl.svg)
 \
 
 # Tables S.R.
@@ -455,7 +455,7 @@ Shift
 Reduce
 :  Remplacer la partie droite au sommet de la pile par la partie gauche ($A \to a$)
 
-![Algorithme Table Analyse L.R.](./algo.svg)
+![Algorithme Table Analyse L.R.](img/algo.svg)
 
 ## Génération automatique de la table SR
 
@@ -516,8 +516,8 @@ $$ a + a + a + a \$ \to E + a + a + a \$ \to E + a + a \$ \to E + a \$ \to E  \$
 
 ### Arbre et poignées
 
-![Arbre et poignées](./tree-SR2.svg)
-\
+![Arbre et poignées](img/tree-SR2.svg)
+
 
 # Génération de code
 
