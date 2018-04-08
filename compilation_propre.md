@@ -107,7 +107,7 @@ Parseur
 ![Arbres de dépendances G~0~](tree.svg)
 
 
-![Actions de la grammaire GPL](gplactionpcode.png)
+<!-- ![Actions de la grammaire GPL](gplactionpcode.png) -->
 
 ## Processus divers
 
