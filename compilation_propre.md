@@ -255,7 +255,7 @@ Fonction GenAtom(COD, Act : int, AType : Atomtype) : PTR
           GenConc(
             GenConc(
               GenConc(GenAtom('N', 0, NonTerminal),
-              GenAtom('->', 5, Terminal)
+              GenAtom('->', 0, Terminal)
             ),
             GenAtom('E', 0, NonTerminal)
           ),
