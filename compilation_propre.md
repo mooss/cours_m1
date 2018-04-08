@@ -22,7 +22,6 @@ date: 'Avril 2018'
 :   type context free CF $A \rightarrow B$ avec $A \in V_N, B \in V^+$
 
 3
-
 :   type régulière
 
 $$
@@ -116,7 +115,7 @@ Parseur
 Scanne les
 
 -   élements terminaux
--   élements terminaux
+-   élements non-terminaux
 
 ### Scan GPL
 
@@ -255,14 +254,14 @@ Fonction GenAtom(COD, Act : int, AType : Atomtype) : PTR
         GenStar(
           GenConc(
             GenConc(
-              GenConc(GenAtom('N', '', NonTerminal),
+              GenConc(GenAtom('N', 0, NonTerminal),
               GenAtom('->', 5, Terminal)
             ),
-            GenAtom('E', '', NonTerminal)
+            GenAtom('E', 0, NonTerminal)
           ),
-          GenAtom(',', , Terminal)
+          GenAtom(',', 1, Terminal)
         ),
-        GenAtom(';', , Terminal)
+        GenAtom(';', 0, Terminal)
       );
     ```
 
@@ -271,18 +270,18 @@ Fonction GenAtom(COD, Act : int, AType : Atomtype) : PTR
     ```ruby
     ##Ajouts de ma part, je ne suis pas sûr des résultats :
 
-    A[N] := GenAtom('IDNTER', , Terminal);
+    A[N] := GenAtom('IDNTER', 2, Terminal);
     ```
 
 3.  E
 
     ```ruby
     A[E] := GenConc(
-              GenAtom('T', '', NonTerminal),
+              GenAtom('T', 0, NonTerminal),
               GenStar(
                 GenConc(
-                  GenAtom('+', ?, Terminal),
-                  GenAtom('T', '', Terminal)
+                  GenAtom('+', 0, Terminal),
+                  GenAtom('T', 3, Terminal)
                   )
                 )
             )
@@ -292,11 +291,11 @@ Fonction GenAtom(COD, Act : int, AType : Atomtype) : PTR
 
     ```ruby
     A[T] := GenConc(
-              GenAtom('F', '', NonTerminal),
+              GenAtom('F', 0, NonTerminal),
               GenStar(
                 GenConc(
-                  GenAtom('.', ?, Terminal),
-                  GenAtom('T', '', Terminal)
+                  GenAtom('.', 0, Terminal),
+                  GenAtom('F', 4, Terminal)
                   )
                 )
             )
@@ -309,31 +308,31 @@ Fonction GenAtom(COD, Act : int, AType : Atomtype) : PTR
               GenUnion(
                 GenUnion(
                   GenUnion(
-                    GenAtom('IDNTER', , Terminal),
-                    GenAtom('ELTER', , Terminal)
+                    GenAtom('IDNTER', 5, Terminal),
+                    GenAtom('ELTER', 5, Terminal)
                     ),
                   GenConc(
                     GenConc(
-                      GenAtom('(', ?, Terminal),
-                      GenAtom('E', '', NonTerminal)
+                      GenAtom('(', 0, Terminal),
+                      GenAtom('E', 0, NonTerminal)
                       ),
-                    GenAtom(')', ?, Terminal)
+                    GenAtom(')', 0, Terminal)
                     )
                   ),
                 GenConc(
                   GenConc(
-                    GenAtom('[', ?, Terminal),
-                    GenAtom('E', '', NonTerminal)
+                    GenAtom('[', 0, Terminal),
+                    GenAtom('E', 0, NonTerminal)
                     ),
-                  GenAtom(']', ?, Terminal)
+                  GenAtom(']', 6, Terminal)
                   )
                 ),
               GenConc(
                 GenConc(
-                  GenAtom('(', ?, Terminal),
-                  GenAtom('E', '', NonTerminal)
+                  GenAtom('(/', 0, Terminal),
+                  GenAtom('E', 0, NonTerminal)
                   ),
-                GenAtom(')', ?, Terminal)
+                GenAtom('/)', 7, Terminal)
                 )
             )
     ```
@@ -345,9 +344,9 @@ Fonction GenAtom(COD, Act : int, AType : Atomtype) : PTR
 fonction Analyse(P : PTR) : booléen
   début
     case P↑.class of
-      Conc: if Analyse(P↑.left) then Analyse := True
+      Conc: if Analyse(P↑.left) then Analyse := true
                                 else Analyse := Analyse(P↑.right);
-      Union: if Analyse(P↑.left) then Analyse := True
+      Union: if Analyse(P↑.left) then Analyse := true
                                 else Analyse := Analyse(P↑.right);
       Star: Analyse := true;
             while Analyse(P↑.stare) do;
