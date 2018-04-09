@@ -14,18 +14,16 @@ date: 'Avril 2018'
 # Types des grammaires
 
 0
-:   type c
+:   grammaires de type C
 
 1
-:   type context sensitive CS $\gamma \rightarrow \beta$ avec
-    $\gamma \leq \beta$
+:   grammaires contextuelles (CS) $\gamma \rightarrow \beta$ avec $\norm{\gamma} \leq \norm{\beta}$
 
 2
-:   type context free CF $A \rightarrow B$ avec $A \in V_N, B \in V^+$
+:   grammaires non contextuelles (CF) $A \rightarrow B$ avec $A \in V_N, B \in V^+$
 
 3
-:   type régulière
-
+:   grammaires régulières
 $$
 \begin{aligned}
 \begin{cases}
@@ -40,10 +38,11 @@ $$
 \end{aligned}
 $$
 
-$$L(G) = \{x \in V_{T}^* / S \Rightarrow x\}$$
+Le langage $L$ généré par une grammaire $G$ est tel que:
+$$L(G) = \{x \in V_{T}^* / S \sederiveen x\}$$
+$S$ étant ici le symbole de départ de la grammaire $G$ (*start symbol*).
 
-l'intersection de deux langages de type x n'est pas forcément de type
-x.
+l'intersection de deux langages de type $x$ n'est pas forcément de type $x$.
 
 
 # Grammaires LL(k)
