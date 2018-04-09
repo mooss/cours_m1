@@ -78,12 +78,12 @@ Concernant la dernière règle, hippolyte a noté:
 
 -   si $A \rightarrow \alpha{}_1 / \alpha{}_2 / \dots / \alpha{}_n$
     alors
-    $$Prem(\alpha_i) \cap Prem(\alpha_j) = \Phi,  \forall i \ne j$$
+    $$First(\alpha_i) \cap First(\alpha_j) = \varnothing,  \forall i \ne j$$
 -   si $A \Rightarrow \epsilon$ on doit avoir
-    $Prem(A) \cap Suiv(A) = \Phi$
+    $$First(A) \cap Follow(A) = \varnothing$$
 
-Si une règle ne possede qu'une derivation, la règle 1 ne s'applique pas.
-Si une règle ne possede pas de suiv, la règle 2 ne s'applique pas.
+Si une règle ne possède qu'une dérivation, la règle 1 ne s'applique pas.
+Si une règle ne possède pas de suivant, la règle 2 ne s'applique pas.
 
 # Projet compilo
 
@@ -93,10 +93,10 @@ GPL
 :   Grammaire Petit Langage
 
 Scanner
-:   analyseur lexical, découpe du texte en unités syntaxiquement corrects (tokens)
+:   analyseur lexical, découpe du texte en unités syntaxiquement correctes (tokens)
 
 Parseur
-:   analyse syntaxique, s'assure que les tokens soient syntaxiquement corrects
+:   analyse syntaxique, s'assure que les tokens sont syntaxiquement corrects
 
 
 ## Schémas
@@ -153,7 +153,7 @@ Une grammaire est forcément composée de plusieurs règles, séparées par des 
 ### Règle 2
 
 $$N \to \mquote{IDNTER},$$
-$\mquote{INDTER}$ signifie identificateur non terminal.
+$\mquote{IDNTER}$ signifie identificateur non terminal.
 
 ### Règle 3
 
@@ -521,7 +521,62 @@ $$ a + a + a + a \$ \to E + a + a + a \$ \to E + a + a \$ \to E + a \$ \to E  \$
 
 ## Mnémoniques associés à un accumulateur
 
+```
+Load A
+STO A
+ADD A
+SUB A
+```
+
+### Exemples
+
+$$y := a + b * c$$
+
+```
+Load b
+MULT c
+ADD a
+STO y
+```
+
+$$a := ( a + b ) * c$$
+
+```
+Load a
+ADD b
+MULT c
+STO a
+```
+
+$$a := c / ( a + b )$$
+
+```
+Load a
+ADD b
+STO d
+Load c
+DIV d
+```
+
 ## Automatisation du processus
+
+Utilisation de la notation post-fixée.
+
+$$ c / ( a + b ) \to cab+/$$
+
+### Exemple
+
+$$ ( a + b ) / ( c + d ) $$
+
+Notation post-fixée : $ab+cd+/$
+```
+Load c
+ADD d
+STO x
+Load a
+ADD b
+DIV x
+```
 
 ## Opérations
 
