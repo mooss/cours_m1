@@ -1,5 +1,5 @@
 TARGETS=compilation_propre.pdf
-MD_TO_PDF=pandoc --filter=pandoc-svg.py --filter pandoc-citeproc --number-sections --table-of-contents -V geometry:margin=3cm -V papersize:a4paper # -V lang:fr-FR
+MD_TO_PDF=pandoc --filter=pandoc-svg.py --filter pandoc-citeproc --number-sections --table-of-contents -V geometry:margin=3cm -V papersize:a4paper -V classoption:fleqn # -V lang:fr-FR
 
 # règles de dépendances
 all: $(TARGETS)

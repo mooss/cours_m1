@@ -1,7 +1,6 @@
 ---
 header-includes:
 - '\usepackage{mathtools}'
-- '\newcommand{\eqdot}{\dot{=}}'
 - '\newcommand{\sederiveen}{\xRightarrow{*}}'
 - '\newcommand{\norm}[1]{\left\lVert#1\right\rVert}'
 - '\usepackage{textcomp}'
@@ -466,31 +465,26 @@ Reduce
 
 ### Opérateurs $\doteq$, $\gtrdot$, et $\lessdot$
 
-
-#### Shift {-}
    - $X \doteq Y$ si
-
-  $$
-  A \rightarrow \dots{} X.Y \dots{} \in \mathcal{P}
-  $$
+\begin{equation*}
+A \rightarrow \dots{} X.Y \dots{} \in \mathcal{P}
+\end{equation*}
 
    - $X \lessdot Y$ si
-$$
-\begin{aligned}
- A \to \dots X.Q \dots \in \mathcal{P} \\
- \text{et } Q \xRightarrow{*}  Y
-\end{aligned}
-$$
+\begin{equation*}
+    \begin{split}
+& A \to \dots{} X.Q \dots{} \in \mathcal{P} \\
+& \text{et } Q \sederiveen  Y
+    \end{split}
+\end{equation*}
 
-#### Reduce {-}
   - $X \gtrdot Y$ si
-$$
-\begin {aligned}
- A \doteq Y \\
- \text{et } A \xRightarrow{*} X
-\end{aligned}
-$$
-
+\begin{equation*}
+   \begin{split}
+& A \doteq Y\\
+& \text{et } A \sederiveen X
+   \end{split}
+\end{equation*}
 
 On peut remplir le tableau SR à partir des relations $\doteq$ ,
 $\gtrdot$ et $\lessdot$ :
