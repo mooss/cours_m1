@@ -124,7 +124,7 @@ Scanne les
 
 -   identificateurs
 -   nombres entiers
--   symboles (&gt;, \#, \[, etc.)
+-   symboles  (&gt;, \#, [, etc.)
 
 ### Action G~0~
 
