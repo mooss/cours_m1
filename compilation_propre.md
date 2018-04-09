@@ -457,6 +457,11 @@ Reduce
 
 ![Algorithme Table Analyse L.R.](img/algo.svg)
 
+## Astuces de construction de la table SR
+ - Commencer par remplir l'accept (en regardant la première règle) et les erreurs.
+ - On reduce quand une poignée apparaît dans la pile.
+ - Si un mot n'est pas en fin de règle, sa ligne ne comprendra pas de reduce.
+
 ## Génération automatique de la table SR
 
 ### Opérateurs $\doteq$, $\gtrdot$, et $\lessdot$
