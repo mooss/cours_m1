@@ -516,7 +516,7 @@ $$ a + a + a + a \$ \to E + a + a + a \$ \to E + a + a \$ \to E + a \$ \to E  \$
 
 ### Arbre et poignées
 
-![Arbre et poignées](img/tree-SR2.svg)
+![Arbre et poignées](img/tree-SR2.svg){width=300px height=300px}
 
 
 # Génération de code
@@ -620,7 +620,7 @@ Exemples :
 
 $$[((a-b)-c)+d] - e \to ab-c-d+e-$$
 
-![Arbre](./img/reg.svg)
+![Arbre](./img/reg.svg){width=250px height=250px}
 \
 
 ```
@@ -635,7 +635,7 @@ On a donc besoin d'un seul registre.
 
 $$b-(c-(d-e)) \to bcde---$$
 
-![Arbre](./img/reg2.svg)
+![Arbre](./img/reg2.svg){width=250px height=250px}
 \
 
 ```
