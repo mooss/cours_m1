@@ -424,23 +424,19 @@ GPL : $S_0 \to ['a'].'b',;$
 Regex : $a^nb$
 
 ### Pile
-![Pile](img/pile1.svg)
-\
+![Pile](img/pile1.svg){width=200px height=200px}
 
 
 ### Dictionnaires
-![Dictionnaires](img/pile2.svg)
-\
+![Dictionnaires](img/pile2.svg){width=100px height=100px}
 
 
 ### Compilation
-![Compilation](img/pile3.svg)
-\
+![Compilation](img/pile3.svg){width=400px height=400px}
 
 
 ### Arbre GPL
-![Arbre GPL](img/gpl.svg)
-\
+![Arbre GPL](img/gpl.svg){width=400px height=400px}
 
 # Tables S.R.
 
