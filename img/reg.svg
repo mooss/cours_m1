@@ -1,0 +1,95 @@
+<svg width="242pt" height="354pt" viewBox="0 0 242 354" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 350.4)">
+<title>%0</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-350.4 238,-350.4 238,4 -4,4"></polygon>
+<!-- 0 -->
+<g id="node1" class="node">
+<title>0</title>
+<text text-anchor="start" x="162.8317" y="-329.8" font-family="Times,serif" font-size="14.00" fill="#0000ff">R0</text>
+<text text-anchor="start" x="168.6697" y="-313" font-family="Times,serif" font-size="14.00" fill="#000000">-</text>
+</g>
+<!-- 1 -->
+<g id="node2" class="node">
+<title>1</title>
+<text text-anchor="start" x="126.8317" y="-252.2" font-family="Times,serif" font-size="14.00" fill="#0000ff">R0</text>
+<text text-anchor="start" x="131.0527" y="-235.4" font-family="Times,serif" font-size="14.00" fill="#000000">+</text>
+</g>
+<!-- 0&#45;&#45;1 -->
+<g id="edge1" class="edge">
+<title>0--1</title>
+<path fill="none" stroke="#000000" d="M161.3527,-304.8046C156.1875,-293.6708 149.8432,-279.9954 144.674,-268.8528"></path>
+</g>
+<!-- 2 -->
+<g id="node3" class="node">
+<title>2</title>
+<text text-anchor="middle" x="207" y="-243.8" font-family="Times,serif" font-size="14.00" fill="#000000">e</text>
+</g>
+<!-- 0&#45;&#45;2 -->
+<g id="edge2" class="edge">
+<title>0--2</title>
+<path fill="none" stroke="#000000" d="M180.6473,-304.8046C186.2291,-292.7729 193.1877,-277.7731 198.5525,-266.2091"></path>
+</g>
+<!-- 3 -->
+<g id="node4" class="node">
+<title>3</title>
+<text text-anchor="start" x="90.8317" y="-174.6" font-family="Times,serif" font-size="14.00" fill="#0000ff">R0</text>
+<text text-anchor="start" x="96.6697" y="-157.8" font-family="Times,serif" font-size="14.00" fill="#000000">-</text>
+</g>
+<!-- 1&#45;&#45;3 -->
+<g id="edge3" class="edge">
+<title>1--3</title>
+<path fill="none" stroke="#000000" d="M125.3527,-227.2046C120.1875,-216.0708 113.8432,-202.3954 108.674,-191.2528"></path>
+</g>
+<!-- 4 -->
+<g id="node5" class="node">
+<title>4</title>
+<text text-anchor="middle" x="171" y="-166.2" font-family="Times,serif" font-size="14.00" fill="#000000">d</text>
+</g>
+<!-- 1&#45;&#45;4 -->
+<g id="edge4" class="edge">
+<title>1--4</title>
+<path fill="none" stroke="#000000" d="M144.6473,-227.2046C150.2291,-215.1729 157.1877,-200.1731 162.5525,-188.6091"></path>
+</g>
+<!-- 5 -->
+<g id="node6" class="node">
+<title>5</title>
+<text text-anchor="start" x="54.8317" y="-97" font-family="Times,serif" font-size="14.00" fill="#0000ff">R0</text>
+<text text-anchor="start" x="60.6697" y="-80.2" font-family="Times,serif" font-size="14.00" fill="#000000">-</text>
+</g>
+<!-- 3&#45;&#45;5 -->
+<g id="edge5" class="edge">
+<title>3--5</title>
+<path fill="none" stroke="#000000" d="M89.3527,-149.6046C84.1875,-138.4708 77.8432,-124.7954 72.674,-113.6528"></path>
+</g>
+<!-- 6 -->
+<g id="node7" class="node">
+<title>6</title>
+<text text-anchor="middle" x="135" y="-88.6" font-family="Times,serif" font-size="14.00" fill="#000000">c</text>
+</g>
+<!-- 3&#45;&#45;6 -->
+<g id="edge6" class="edge">
+<title>3--6</title>
+<path fill="none" stroke="#000000" d="M108.6473,-149.6046C114.2291,-137.5729 121.1877,-122.5731 126.5525,-111.0091"></path>
+</g>
+<!-- 7 -->
+<g id="node8" class="node">
+<title>7</title>
+<text text-anchor="middle" x="27" y="-13.8" font-family="Times,serif" font-size="14.00" fill="#000000">a</text>
+</g>
+<!-- 5&#45;&#45;7 -->
+<g id="edge7" class="edge">
+<title>5--7</title>
+<path fill="none" stroke="#000000" d="M52.972,-71.964C47.5627,-60.7248 40.9497,-46.9845 35.7505,-36.1816"></path>
+</g>
+<!-- 8 -->
+<g id="node9" class="node">
+<title>8</title>
+<text text-anchor="middle" x="99" y="-13.8" font-family="Times,serif" font-size="14.00" fill="#000000">b</text>
+</g>
+<!-- 5&#45;&#45;8 -->
+<g id="edge8" class="edge">
+<title>5--8</title>
+<path fill="none" stroke="#000000" d="M73.028,-71.964C78.4373,-60.7248 85.0503,-46.9845 90.2495,-36.1816"></path>
+</g>
+</g>
+</svg>

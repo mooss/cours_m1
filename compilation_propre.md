@@ -495,13 +495,15 @@ $\gtrdot$ et $\lessdot$ :
 ## Exemple de génération de table S.R.
 ### GPL
 $S \to E \$$
+
 $E \to E+a$
+
 $E \to a$
 
 Type 2 car deux terminaux ('+' et 'a')
 
 ### Fenêtre
-$a + a + a + a$
+$a + a + a + a$$
 
 ### Questions
 1. Poignées ?
@@ -578,8 +580,75 @@ ADD b
 DIV x
 ```
 
-## Opérations
+## Génération de code avec plusieurs registres
 
-## Registes
+### Opérations
+$$
+Mov
+  \begin{Bmatrix}
+    R  \\
+    A
+  \end{Bmatrix}
+  ,
+  \begin{Bmatrix}
+    R  \\
+    A
+  \end{Bmatrix}
+$$
 
-## Règle générale
+avec $R$ : registres et $A$ : addresses.
+La première partie est la source et la deuxième la destination.
+
+`Mov A, R` : prendre le contenu de $A$ et le mettre dans $R$.
+
+$$
+Op
+  \begin{Bmatrix}
+    R  \\
+    A
+  \end{Bmatrix}
+  ,
+  R
+$$
+
+Exemples :
+
+`ADD R1, R2` $$ \Leftrightarrow R2 \leftarrow R2 + R1 $$
+`DIV b, R1` $$ \Leftrightarrow R1 \leftarrow R1 / b $$
+
+### Combien a-t-on besoin de registres ?
+
+$$[((a-b)-c)+d] - e \to ab-c-d+e-$$
+
+![Arbre](./img/reg.svg)
+\
+
+```
+MOV a, R0
+SUB b, R0
+SUB c, R0
+ADD d, R0
+SUB e, R0
+```
+
+On a donc besoin d'un seul registre.
+
+$$b-(c-(d-e)) \to bcde---$$
+
+![Arbre](./img/reg2.svg)
+\
+
+```
+MOV d, R0
+SUB e, R0
+MOV c, R1
+SUB R0, R1
+MOV b, R0
+SUB R1, R0
+```
+On a besoin de deux registres.
+
+### Règles générales
+
+![Règles générales](./img/regles_reg.svg)
+\

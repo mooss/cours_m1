@@ -1,0 +1,16 @@
+graph{
+0 [shape=none label=<<font color="blue">R0</font><br/>->]
+1 [shape=none label=<<font color="blue">R0</font><br/>+>]
+2 [shape=none label="e"]
+3 [shape=none label=<<font color="blue">R0</font><br/>->]
+4 [shape=none label="d"]
+5 [shape=none label=<<font color="blue">R0</font><br/>->]
+6 [shape=none label="c"]
+7 [shape=none label="a"]
+8 [shape=none label="b"]
+
+0 -- {1 2}
+1 -- {3 4}
+3 -- {5 6}
+5 -- {7 8}
+}

@@ -1,0 +1,20 @@
+graph{
+0 [shape=none label="1 registre\n\n1"]
+1 [shape=none label="1"]
+2 [shape=none label="0"]
+
+3 [shape=none label="t+1 registres\n\n..."]
+4 [shape=none label="t1"]
+l1 [shape=none label="="]
+5 [shape=none label="t2"]
+
+6 [shape=none label="max(t1,t2) registres\n\n..."]
+7 [shape=none label="t1"]
+l2 [shape=none label="≠"]
+8 [shape=none label="t2"]
+0 -- {1 2}
+3 -- {4 5}
+3 -- l1 [style=invis]
+6 -- {7 8}
+6 -- l2 [style=invis]
+}
