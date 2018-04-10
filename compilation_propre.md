@@ -556,13 +556,13 @@ Load c
 DIV d
 ```
 
-## Automatisation du processus
+## Automatisation du processus
 
 Utilisation de la notation post-fixée.
 
 $$ c / ( a + b ) \to cab+/$$
 
-### Exemple
+### Exemple
 
 $$ ( a + b ) / ( c + d ) $$
 
@@ -576,7 +576,7 @@ ADD b
 DIV x
 ```
 
-## Génération de code avec plusieurs registres
+## Génération de code avec plusieurs registres
 
 ### Opérations
 $$
@@ -612,7 +612,7 @@ Exemples :
 `ADD R1, R2` $$ \Leftrightarrow R2 \leftarrow R2 + R1 $$
 `DIV b, R1` $$ \Leftrightarrow R1 \leftarrow R1 / b $$
 
-### Combien a-t-on besoin de registres ?
+### Combien a-t-on besoin de registres ?
 
 $$[((a-b)-c)+d] - e \to ab-c-d+e-$$
 
@@ -644,7 +644,7 @@ SUB R1, R0
 ```
 On a besoin de deux registres.
 
-### Règles générales
+### Règles générales
 
 ![Règles générales](./img/regles_reg.svg)
 \
