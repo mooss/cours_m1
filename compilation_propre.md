@@ -199,7 +199,7 @@ Fonction GenConc(P1, P2 : PTR) : PTR;
   var P : PTR;
 debut
   New(P, conc);
-  P↑.left := P1;  
+  P↑.left := P1;
   P↑.right := P2;
   P↑.class := conc;
   GenConc := P;
@@ -354,11 +354,11 @@ fonction Analyse(P : PTR) : booléen
             if Analyse(P↑.une) then;
       Atom: case P↑.Atype of
               Terminal: if P↑.cod = code then #cod = code ASCII
-                début
-                  Analyse := true;
-                  if P↑.act != 0 then G0-action(P↑.act)
-                  scanG0;
-                fin
+                            début
+                              Analyse := true;
+                              if P↑.act != 0 then G0-action(P↑.act)
+                              scanG0;
+                            fin
                         else Analyse := false;
               Non-Terminal: if Analyse(A[P↑.cod]) then
                               début
