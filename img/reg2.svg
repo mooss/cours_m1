@@ -5,7 +5,7 @@
 <!-- 0 -->
 <g id="node1" class="node">
 <title>0</title>
-<text text-anchor="start" x="54.8317" y="-252.2" font-family="Times,serif" font-size="14.00" fill="#0000ff">R0</text>
+<text text-anchor="start" x="54.8317" y="-252.2" font-family="Times,serif" font-size="14.00" fill="#3BA1C3">R0</text>
 <text text-anchor="start" x="60.6697" y="-235.4" font-family="Times,serif" font-size="14.00" fill="#000000">-</text>
 </g>
 <!-- 1 -->
@@ -21,7 +21,7 @@
 <!-- 2 -->
 <g id="node3" class="node">
 <title>2</title>
-<text text-anchor="start" x="90.8317" y="-174.6" font-family="Times,serif" font-size="14.00" fill="#0000ff">R1</text>
+<text text-anchor="start" x="90.8317" y="-174.6" font-family="Times,serif" font-size="14.00" fill="#3BA1C3">R1</text>
 <text text-anchor="start" x="96.6697" y="-157.8" font-family="Times,serif" font-size="14.00" fill="#000000">-</text>
 </g>
 <!-- 0&#45;&#45;2 -->
@@ -42,7 +42,7 @@
 <!-- 4 -->
 <g id="node5" class="node">
 <title>4</title>
-<text text-anchor="start" x="126.8317" y="-97" font-family="Times,serif" font-size="14.00" fill="#0000ff">R0</text>
+<text text-anchor="start" x="126.8317" y="-97" font-family="Times,serif" font-size="14.00" fill="#3BA1C3">R0</text>
 <text text-anchor="start" x="132.6697" y="-80.2" font-family="Times,serif" font-size="14.00" fill="#000000">-</text>
 </g>
 <!-- 2&#45;&#45;4 -->

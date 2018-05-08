@@ -595,7 +595,7 @@ $$
 avec $R$ : registres et $A$ : addresses.
 La première partie est la source et la deuxième la destination.
 
-`Mov A, R` : prendre le contenu de $A$ et le mettre dans $R$.
+`Mov A, R`{.ruby} : prendre le contenu de $A$ et le mettre dans $R$.
 
 $$
 Op
@@ -609,8 +609,8 @@ $$
 
 Exemples :
 
-`ADD R1, R2` $$ \Leftrightarrow R2 \leftarrow R2 + R1 $$
-`DIV b, R1` $$ \Leftrightarrow R1 \leftarrow R1 / b $$
+`ADD R1, R2`{.ruby}  $$ \Leftrightarrow R2 \leftarrow R2 + R1 $$
+`DIV b, R1`{.ruby}  $$ \Leftrightarrow R1 \leftarrow R1 / b $$
 
 ### Combien a-t-on besoin de registres ?
 
@@ -682,11 +682,11 @@ DEC
 Opérateurs relationels
 ```ruby
 SUP # >
-SUPE # ≥
+SUPE # >=
 INF # <
-INFE # ≤
+INFE # <=
 EG # =
-DIFF # ≠
+DIFF # !=
 ```
 
 Instances Els(?)
@@ -725,7 +725,7 @@ Programme Sommej #somme des entiers de i à n
     Read(N);
     S := 0;
     I := 1;
-    while I ≤ N do
+    while I <= N do
       début
         S := S + I;
         I := I + 1;
@@ -734,32 +734,63 @@ Programme Sommej #somme des entiers de i à n
   fin
 ```
 
-| Instruction    | Numéro | Opération | V/A |
-| -------------- | ------ | --------- | --- |
-| Read(N)        | 1      | LDA       | 3   |
-|                | 3      | RD        |     |
-|                | 4      | AFF       |     |
-| S := 0         | 5      | LDA       | 2   |
-|                | 7      | LDC       | 0   |
-|                | 9      | AFF       |     |
-| I := 1         | 10     | LDA       | 1   |
-|                | 12     | LDC       | 1   |
-|                | 14     | AFF       |     |
-| while I ≤ N do | 15     | LDA       | 1   |
-|                | 17     | LDA       | 3   |
-|                | 19     | INFE      |     |
-|                | 20     | JIF       | 39  |
-| S := S + I     | 22     | LDA       | 2   |
-|                | 24     | LDV       | 2   |
-|                | 26     | LDV       | 1   |
-|                | 28     | ADD       |     |
-|                | 29     | AFF       |     |
-| I := I + 1     | 30     | LDA       | 1   |
-|                | 32     | LDV       | 1   |
-|                | 34     | INC       |     |
-|                | 35     | ADD       |     |
-|                | 36     | AFF       |     |
-| fin            | 37     | JMP       | 15  |
-| writeln(S)     | 39     | LDV       | 2   |
-|                | 41     | WRTLN     |     |
-| fin            | 42     | STOP      |     |
+| Instruction              | N°  | Opération      | V/A |
+| ------------------------ | --- | -------------- | --- |
+| `Read(N)`{.ruby}         | 1   | `LDA`{.ruby}   | 3   |
+|                          | 3   | `RD`{.ruby}    |     |
+|                          | 4   | `AFF`{.ruby}   |     |
+| `S := 0`{.ruby}          | 5   | `LDA`{.ruby}   | 2   |
+|                          | 7   | `LDC`{.ruby}   | 0   |
+|                          | 9   | `AFF`{.ruby}   |     |
+| `I := 1`{.ruby}          | 10  | `LDA`{.ruby}   | 1   |
+|                          | 12  | `LDC`{.ruby}   | 1   |
+|                          | 14  | `AFF`{.ruby}   |     |
+| `while I <= N do`{.ruby} | 15  | `LDA`{.ruby}   | 1   |
+|                          | 17  | `LDA`{.ruby}   | 3   |
+|                          | 19  | `INFE`{.ruby}  |     |
+|                          | 20  | `JIF`{.ruby}   | 39  |
+| `S := S + I `{.ruby}     | 22  | `LDA`{.ruby}   | 2   |
+|                          | 24  | `LDV`{.ruby}   | 2   |
+|                          | 26  | `LDV`{.ruby}   | 1   |
+|                          | 28  | `ADD`{.ruby}   |     |
+|                          | 29  | `AFF`{.ruby}   |     |
+| `I := I + 1`{.ruby}      | 30  | `LDA`{.ruby}   | 1   |
+|                          | 32  | `LDV`{.ruby}   | 1   |
+|                          | 34  | `INC`{.ruby}   |     |
+|                          | 35  | `ADD`{.ruby}   |     |
+|                          | 36  | `AFF`{.ruby}   |     |
+| `fin`{.ruby}             | 37  | `JMP`{.ruby}   | 15  |
+| `writeln(S)`{.ruby}      | 39  | `LDV`{.ruby}   | 2   |
+|                          | 41  | `WRTLN`{.ruby} |     |
+| `fin`{.ruby}             | 42  | `STOP`{.ruby}  |     |
+
+### Procédures *Exec* et *Interpréter*
+
+```ruby
+Procédure Exec
+  while P-code[c0] != STOP do Interpréter(P-code[c0])
+
+Procédure Interpréter(x:int)
+  début
+    case x of
+      LDA:
+        spx := spx + 1;
+        Pilex[spx] := P-code[c0 + 1];
+        c0 := c0 + 2;
+      #le reste est spéculatif...
+      LDV:
+        spx := spx + 1;
+        Pilex[spx] := Pilex[P-code[c0 + 1]];
+        c0 := c0 + 2;
+      JMP:
+        c0 := c0 + 1;
+      RD:
+        spx := spx + 1;
+        Pilex[spx] := Pilex[P-code[c0 - 1]];
+      WRTLN:
+        Pilex[spx]; # ou Pilex[P-code[c0 - 1]];
+      AFF:
+        Pilex[spx - 2] := Pilex[spx - 1]
+      ...
+  fin
+```
