@@ -519,7 +519,7 @@ $$ a + a + a + a \$ \to E + a + a + a \$ \to E + a + a \$ \to E + a \$ \to E  \$
 
 ## Mnémoniques associés à un accumulateur
 
-```
+```ruby
 Load A
 STO A
 ADD A
@@ -530,7 +530,7 @@ SUB A
 
 $$y := a + b * c$$
 
-```
+```ruby
 Load b
 MULT c
 ADD a
@@ -539,7 +539,7 @@ STO y
 
 $$a := ( a + b ) * c$$
 
-```
+```ruby
 Load a
 ADD b
 MULT c
@@ -548,7 +548,7 @@ STO a
 
 $$a := c / ( a + b )$$
 
-```
+```ruby
 Load a
 ADD b
 STO d
@@ -567,7 +567,7 @@ $$ c / ( a + b ) \to cab+/$$
 $$ ( a + b ) / ( c + d ) $$
 
 Notation post-fixée : $ab+cd+/$
-```
+```ruby
 Load c
 ADD d
 STO x
@@ -619,7 +619,7 @@ $$[((a-b)-c)+d] - e \to ab-c-d+e-$$
 ![Arbre](./img/reg.svg){width=250px height=250px}
 \
 
-```
+```ruby
 MOV a, R0
 SUB b, R0
 SUB c, R0
@@ -634,7 +634,7 @@ $$b-(c-(d-e)) \to bcde---$$
 ![Arbre](./img/reg2.svg){width=250px height=250px}
 \
 
-```
+```ruby
 MOV d, R0
 SUB e, R0
 MOV c, R1
@@ -648,3 +648,118 @@ On a besoin de deux registres.
 
 ![Règles générales](./img/regles_reg.svg)
 \
+
+## P-code
+
+### Opérations
+
+Trois instances de chargement
+```ruby
+LDA@ #address
+LDV@ #value in add
+LDC #constant
+```
+
+Quatre instances de saut
+```ruby
+JMP #while
+JIF #jump if false
+JSR #jump if subroutine
+RSR #return from subroutine
+```
+
+Opérateurs
+```ruby
+ADD # +
+Moins # -
+DIV # /
+Mult # *
+NEG # (- unaire)
+INC
+DEC
+```
+
+Opérateurs relationels
+```ruby
+SUP # >
+SUPE # ≥
+INF # <
+INFE # ≤
+EG # =
+DIFF # ≠
+```
+
+Instances Els(?)
+```ruby
+RD
+RDLN # avec retour chariot
+WRT
+WRTLN
+```
+
+Opérateurs logiques
+```ruby
+AND
+OR
+NOT
+```
+
+Affectation
+```ruby
+AFF
+```
+
+Instances d'arrêt
+```ruby
+STOP
+INDA #Tableau -> adresse
+INDV #Tableau -> valeur
+```
+
+### Exemples
+
+```ruby
+Programme Sommej #somme des entiers de i à n
+  var I, S, N :int;
+  début
+    Read(N);
+    S := 0;
+    I := 1;
+    while I ≤ N do
+      début
+        S := S + I;
+        I := I + 1;
+      fin
+    writeln(S);
+  fin
+```
+
+| Instruction    | Numéro | Opération | V/A |
+| -------------- | ------ | --------- | --- |
+| Read(N)        | 1      | LDA       | 3   |
+|                | 3      | RD        |     |
+|                | 4      | AFF       |     |
+| S := 0         | 5      | LDA       | 2   |
+|                | 7      | LDC       | 0   |
+|                | 9      | AFF       |     |
+| I := 1         | 10     | LDA       | 1   |
+|                | 12     | LDC       | 1   |
+|                | 14     | AFF       |     |
+| while I ≤ N do | 15     | LDA       | 1   |
+|                | 17     | LDA       | 3   |
+|                | 19     | INFE      |     |
+|                | 20     | JIF       | 36  |
+| S := S + I     | 22     | LDA       | 2   |
+|                | 24     | LDV       | 2   |
+|                | 26     | LDV       | 1   |
+|                | 28     | ADD       |     |
+|                | 29     | AFF       |     |
+| I := I + 1     | 30     | LDA       | 1   |
+|                | 32     | LDV       | 1   |
+|                | 34     | INC       |     |
+|                | 35     | ADD       |     |
+|                | 36     | AFF       |     |
+| fin            | 37     | JMP       | 15  |
+| writeln(S)     | 39     | LDV       | 2   |
+|                | 41     | WRTLN     |     |
+| fin            | 42     | STOP      |     |
