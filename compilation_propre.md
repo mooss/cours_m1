@@ -748,7 +748,7 @@ Programme Sommej #somme des entiers de i à n
 | while I ≤ N do | 15     | LDA       | 1   |
 |                | 17     | LDA       | 3   |
 |                | 19     | INFE      |     |
-|                | 20     | JIF       | 36  |
+|                | 20     | JIF       | 39  |
 | S := S + I     | 22     | LDA       | 2   |
 |                | 24     | LDV       | 2   |
 |                | 26     | LDV       | 1   |
