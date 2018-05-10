@@ -794,3 +794,43 @@ Procédure Interpréter(x:int)
       ...
   fin
 ```
+\newpage
+
+# Annexes
+
+## Exercices de TD
+
+### Déterminisation d'un automate
+
+![Automate non déterministe](./img/nfa.svg)
+
+**1. Donner la grammaire associée**
+
+$$ S \rightarrow aS | bS | aA | aB $$
+$$ A \rightarrow aC | a $$
+$$ B \rightarrow bD | b $$
+$$ C \rightarrow aC | bC | a $$
+$$ D \rightarrow aD | bD | a | b $$
+
+**2. La grammaire est-elle LL(1) ?**
+
+Non, car elle n'est pas déterministe.
+$First(a) = \{a\}$
+$First(aC) = \{a\}$
+$First(a) \cup First(aC) = \{a\} \neq \varnothing$
+
+**3. Déterminiser l'automate**
+
+|           | a             | b             |     |
+| --------- | ------------- | ------------- | --- |
+| {1}       | {1,2} (A)     | {1,3} (B)     | S   |
+| {1,2}     | {1,2,4} (C)   | {1,3} (B)     | A   |
+| {1,3}     | {1,2} (A)     | {1,3,5} (D)   | B   |
+| {1,2,4}   | {1,2,4} (C)   | {1,3,4} (E)   | C   |
+| {1,3,5}   | {1,2,5} (F)   | {1,3,5} (D)   | D   |
+| {1,3,4}   | {1,2,4} (C)   | {1,3,4,5} (G) | E   |
+| {1,2,5}   | {1,2,4,5} (H) | {1,3,5} (D)   | F   |
+| {1,3,4,5} | {1,2,4,5} (H) | {1,3,4,5} (G) | G   |
+| {1,2,4,5} | {1,2,4,5} (H) | {1,3,4,5} (G) | H   |
+
+![Automate déterministe](./img/dfa.svg)
